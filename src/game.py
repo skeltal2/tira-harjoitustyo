@@ -10,6 +10,8 @@ class Game:
         while self.board.won == False:
             print("Siirtoja: "+str(self.board.get_moves())+"\n")
             self.board.new_tile()
+            
+            print(self.board)
 
             test_board = Board(self.board.get_list())
             if self.up(test_board) == self.down(test_board) == self.left(test_board) == self.right(test_board) == False:
@@ -18,7 +20,6 @@ class Game:
                 return False
             
             while True:
-                print(self.board)
 
                 move = input("Siirto (w,a,s,d):")
                 legal = False
