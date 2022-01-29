@@ -122,12 +122,3 @@ class Board:
                 return_string += "\n"
 
         return return_string
-
-if __name__ == "__main__":
-    b = Board()
-    b.insert_tile(4,0)
-    b.insert_tile(2,4)
-    b.insert_tile(2,8)
-    print(b)
-    b.move(2)
-    print(b)
