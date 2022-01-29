@@ -14,7 +14,7 @@ Aloita peli:
 ```
 poetry run invoke start
 ```
-(Koska ainoa riippuvuus on invoke, pelin voi myös aloittaa suorittamalla:)
+Koska ainoa riippuvuus on invoke, pelin voi myös aloittaa suorittamalla:
 ```
 python3 src/index.py
 ```
