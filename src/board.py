@@ -76,19 +76,21 @@ class Board:
                         skip = True
                         break
                     if match != 0:
-                        if match == tile:
+                        if match == tile: # yhdistä laatta samaan laattaan
                             self.board_state[tile_loc] *= 2
                             self.board_state[match_loc] = 0
                             legal = True
                             self.score += self.board_state[tile_loc]
                             j += 1
-                        elif tile == 0 and match != 0:
+                            break
+                        elif tile == 0 and match != 0: # siirrä laatta tyhjään tilaan
                             self.board_state[tile_loc] = match
                             self.board_state[match_loc] = 0
                             legal = True
                         else:
                             break
-                    j += 1
+                    else:
+                        j += 1
                 #print(self)
                 #print(legal)
         self.moves += 1
