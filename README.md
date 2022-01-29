@@ -7,14 +7,14 @@
 
 ## Käyttöohje
 Asenna riipuvuudet:
-´´´
+```
 poetry install
-´´´
+```
 Aloita peli:
-´´´
+```
 poetry run invoke start
-´´´
+```
 Tai suorita:
-´´´
+```
 python3 src/index.py
-´´´
+```
