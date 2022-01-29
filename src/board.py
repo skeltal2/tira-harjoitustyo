@@ -81,6 +81,8 @@ class Board:
                             self.board_state[match_loc] = 0
                             legal = True
                             self.score += self.board_state[tile_loc]
+                            if self.board_state[tile_loc] == 2048:
+                                self.won = True
                             j += 1
                             break
                         elif tile == 0 and match != 0: # siirrä laatta tyhjään tilaan
