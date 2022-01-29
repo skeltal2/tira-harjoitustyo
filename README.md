@@ -14,6 +14,8 @@ Aloita peli:
 ```
 poetry run invoke start
 ```
+Peliä pelataan kirjoittamalla suunta (w, a, s, d) ja painamalla enter.
+
 Koska ainoa riippuvuus on invoke, pelin voi myös aloittaa suorittamalla:
 ```
 python3 src/index.py
