@@ -2,6 +2,7 @@ from random import choice, random
 
 class Board:
 
+    # Laattojen sijainnit:
     # 00 | 01 | 02 | 03
     # -----------------
     # 04 | 05 | 06 | 07
@@ -10,11 +11,12 @@ class Board:
     # -----------------
     # 12 | 13 | 14 | 15
 
-    def __init__(self, board_state=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], moves=0):
+    def __init__(self, board_state=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], moves=0, score=0):
         self.board_state = board_state
         self.moves = moves
-        self.won = False
+        self.score = score
 
+        self.won = False
         self.rows = [
             [0,1,2,3],
             [4,5,6,7],
@@ -29,73 +31,71 @@ class Board:
             [3,7,11,15]
         ]
     
-    def insert_tile(self, value, n):
+    def insert_tile(self, value, n): # luo uusi laatta
         self.board_state[n] = value
     
-    def get_free(self):
-        free = []
+    def get_empty(self): # palauttaa tyhjät laatat
+        empty = []
         for i in range(len(self.board_state)):
             if self.board_state[i] == 0:
-                free.append(i)
-        return free
+                empty.append(i)
+        return empty
     
-    def get_moves(self):
+    def get_moves(self): # palauttaa siirtojen määrän
         return self.moves
 
-    def get_list(self):
+    def get_list(self): # palauttaa pelikentän listana
         return self.board_state.copy()
+    
+    def get_score(self):
+        return self.score
 
     # 0: vasen, 1: oikea, 2: alas, 3: ylös
     def move(self,dir):
-        legal_move = False
+        legal = False # jos mikään laatta ei liiku, siirto on laiton
+        # vasen ja oikea siirto käyttää rivejä, ylös ja alas sarakkeita
         if dir == 2 or dir == 3:
             loc_table = self.cols
         else:
             loc_table = self.rows
-
         for l in loc_table:
             lst = l.copy()
             if dir == 1 or dir == 2:
                 lst.reverse()
-            merge = -1
-            free = -1
+            skip = False
             for i in range(len(lst)):
-                tile_loc = lst[i]
-                tile = self.board_state[tile_loc]
-
-                if tile == 0:
-                    if free == -1:
-                        free = tile_loc
-                else:
-                    if merge == -1 and free == -1:
-                        merge = tile_loc
-                        continue
-                    else:
-                        if tile == self.board_state[merge] and merge != -1:
-                            self.board_state[merge] *= 2
-                            self.board_state[tile_loc] = 0
-                            legal_move = True
-                            merge = -1
-                            if free == -1:
-                                free = tile_loc
+                if skip:
+                    break
+                j = i+1
+                while j < len(lst):
+                    tile_loc = lst[i]
+                    tile = self.board_state[tile_loc]
+                    match_loc = lst[j]
+                    match = self.board_state[match_loc]
+                    if match == 0 and j == len(lst)-1: # jos päästään loppuun asti ja lopussa on 0, muita siirtoja ei voi enään olla
+                        skip = True
+                        break
+                    if match != 0:
+                        if match == tile:
+                            self.board_state[tile_loc] *= 2
+                            self.board_state[match_loc] = 0
+                            legal = True
+                            self.score += self.board_state[tile_loc]
+                        elif tile == 0 and match != 0:
+                            self.board_state[tile_loc] = match
+                            self.board_state[match_loc] = 0
+                            legal = True
                         else:
-                            merge = tile_loc
-                            if free == -1:
-                                continue
-                            merge = free
-                            self.board_state[free] = tile
-                            self.board_state[tile_loc] = 0
-                            legal_move = True
-                            free = tile_loc
+                            break
+                    j += 1
+                #print(self)
+                #print(legal)
+        self.moves += 1
+        return True if legal else False # oliko siirto laillinen?
             
-        if not legal_move:
-            return False
-        else:
-            self.moves += 1
-            return True
-    
-    def new_tile(self, odds=0.9):
-        loc = choice(self.get_free())
+
+    def new_tile(self, odds=0.9): # luo uuden 2- tai 4-laatan (normaalisti 90% 2-laattoja)
+        loc = choice(self.get_empty())
         if random() < odds:
             value = 2
         else:
@@ -124,11 +124,7 @@ class Board:
 
 if __name__ == "__main__":
     b = Board()
-    b.insert_tile(2,3)
-    print(b)
-    print(b.move(1))
-    print(b)
-    print(b.move(2))
-    print(b)
-    print(b.move(3))
-    print(b)
+    b.insert_tile(2,1)
+    #print(b)
+    b.move(0)
+    #print(b)
