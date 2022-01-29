@@ -81,6 +81,7 @@ class Board:
                             self.board_state[match_loc] = 0
                             legal = True
                             self.score += self.board_state[tile_loc]
+                            j += 1
                         elif tile == 0 and match != 0:
                             self.board_state[tile_loc] = match
                             self.board_state[match_loc] = 0
@@ -124,7 +125,9 @@ class Board:
 
 if __name__ == "__main__":
     b = Board()
-    b.insert_tile(2,1)
-    #print(b)
-    b.move(0)
-    #print(b)
+    b.insert_tile(4,0)
+    b.insert_tile(2,4)
+    b.insert_tile(2,8)
+    print(b)
+    b.move(2)
+    print(b)
