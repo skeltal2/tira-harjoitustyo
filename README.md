@@ -6,7 +6,7 @@
 - [Viikkoraportti 2](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikkoraportti2.md)
 
 ## Käyttöohje
-Asenna riipuvuudet:
+Asenna riippuvuudet:
 ```
 poetry install
 ```
