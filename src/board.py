@@ -72,7 +72,7 @@ class Board:
                     tile = self.board_state[tile_loc]
                     match_loc = lst[j]
                     match = self.board_state[match_loc]
-                    if match == 0 and j == len(lst)-1: # jos päästään loppuun asti ja lopussa on 0, muita siirtoja ei voi enään olla
+                    if match == 0 and j == len(lst)-1: # jos päästään loppuun asti ja lopussa on 0, muita siirtoja ei voi enää olla
                         skip = True
                         break
                     if match != 0:
