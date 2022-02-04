@@ -8,53 +8,41 @@ class Game:
         if self.terminal:
             self.terminal_loop()
         else:
-            pass
+            self.algorithm_loop()
 
     def terminal_loop(self):
         self.board.new_tile()
-        while self.board.won == False:
+        while self.board.won is False:
             print(f"Siirtoja: {str(self.board.get_moves())}\nPisteet: {self.board.get_score()}\n")
             self.board.new_tile()
 
             print(self.board)
 
-            test_board = Board(self.board.get_list())
-            if self.up(test_board) == self.down(test_board) == self.left(test_board) == self.right(test_board) == False: # kokeile voiko mitään siirtoa tehdä
+            if not self.board.get_legal_moves():
                 print("Ei laillisia siirtoja, hävisit pelin!")
                 print("Suurin laatta: "+str(max(self.board.get_list())))
                 return False
-            
             while True:
 
                 move = input("Siirto (w,a,s,d):")
                 legal = False
 
                 if move == "w":
-                    legal = self.up(self.board)
+                    legal = self.board.move(3)
                 elif move == "s":
-                    legal = self.down(self.board)
+                    legal = self.board.move(2)
                 elif move == "a":
-                    legal = self.left(self.board)
+                    legal = self.board.move(0)
                 elif move == "d":
-                    legal = self.right(self.board)
+                    legal = self.board.move(1)
 
-                if legal:
-                    break
-                else:
+                if not legal:
                     print("Laiton siirto!")
-                    
+                else:
+                    break
         print("Voitit pelin!")
         print(self.board)
         return True
-    
-    def left(self, board):
-        return board.move(0)
 
-    def right(self, board):
-        return board.move(1)
-
-    def down(self, board):
-        return board.move(2)
-    
-    def up(self, board):
-        return board.move(3)
+    def algorithm_loop(self):
+        pass

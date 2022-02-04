@@ -1,6 +1,18 @@
 from random import choice, random
 
 class Board:
+    """
+    Luo uuden pelilaudan
+
+    Atribuutit
+    ----------
+    board_state : list
+        Pelilaudan laattojen arvot
+    moves : int
+        Siirtojen määrä
+    score : int
+        Pisteiden määrä
+    """
 
     # Laattojen sijainnit:
     # 00 | 01 | 02 | 03
@@ -11,8 +23,23 @@ class Board:
     # -----------------
     # 12 | 13 | 14 | 15
 
-    def __init__(self, board_state=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], moves=0, score=0):
-        self.board_state = board_state
+    def __init__(self, board_state:list=None, moves:int=0, score:int=0):
+        """
+        Asettaa pelilaudan arvot
+
+        Parametrit
+        ----------
+        board_state : list
+            Pelilaudan laattojen arvot
+        moves : int
+            Siirtojen määrä
+        score : int
+            Pisteiden määrä
+        """
+        if board_state is None or len(board_state) != 16:
+            self.board_state = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        else:
+            self.board_state = board_state
         self.moves = moves
         self.score = score
 
@@ -30,76 +57,125 @@ class Board:
             [2,6,10,14],
             [3,7,11,15]
         ]
-    
-    def insert_tile(self, value, n): # luo uusi laatta
-        self.board_state[n] = value
-    
-    def get_empty(self): # palauttaa tyhjät laatat
+
+    def insert_tile(self, value:int, location:int):
+        """
+        Luo uuden laatan
+
+        Parametrit
+        ----------
+        value : int
+            Laatan arvo
+        location : int
+            Laatan sijainti (0-15)
+        """
+        self.board_state[location] = value
+
+    def get_empty(self):
+        """
+        Etsii tyhjät laatat ja palauttaa niiden sijainnit (list)
+        """
         empty = []
-        for i in range(len(self.board_state)):
-            if self.board_state[i] == 0:
-                empty.append(i)
+        for i in enumerate(self.board_state):
+            if self.board_state[i[0]] == 0:
+                empty.append(i[0])
         return empty
-    
-    def get_moves(self): # palauttaa siirtojen määrän
+
+    def get_moves(self):
+        """
+        Palauttaa tehtyjen siirtojen määrän (int)
+        """
         return self.moves
 
-    def get_list(self): # palauttaa pelikentän listana
+    def get_list(self):
+        """
+        Palauttaa kopion pelikentän laattojen arvoista
+        """
         return self.board_state.copy()
-    
+
     def get_score(self):
+        """
+        Palauttaa pisteet
+        """
         return self.score
 
-    # 0: vasen, 1: oikea, 2: alas, 3: ylös
-    def move(self,dir):
+    def move(self, direction:int):
+        """
+        Siirtää kaikkia laattoja valittuun suuntaan
+
+        Parametrit
+        ----------
+        direction : int
+            Suunta, mihin laattoja siirretään
+            0: Vasen
+            1: Oikea
+            2: Alas
+            3: Ylös
+
+        Palautukset
+        -------
+        legal : bool
+            Oliko siirto laillinen?
+        """
         legal = False # jos mikään laatta ei liiku, siirto on laiton
         # vasen ja oikea siirto käyttää rivejä, ylös ja alas sarakkeita
-        if dir == 2 or dir == 3:
+        if direction in (2, 3):
             loc_table = self.cols
         else:
             loc_table = self.rows
-        for l in loc_table:
-            lst = l.copy()
-            if dir == 1 or dir == 2:
+        for location in loc_table:
+            lst = location.copy()
+            if direction in (1, 2):
                 lst.reverse()
             skip = False
-            for i in range(len(lst)):
+            for i in enumerate(lst):
+                # käy läpi jokaisen laatan rivillä/sarakkeella
+                current = i[0]
                 if skip:
                     break
-                j = i+1
+                j = current+1
                 while j < len(lst):
-                    tile_loc = lst[i]
+                    # käy läpi laatan "edessä" olevat laatat
+                    tile_loc = lst[current]
                     tile = self.board_state[tile_loc]
                     match_loc = lst[j]
                     match = self.board_state[match_loc]
-                    if match == 0 and j == len(lst)-1: # jos päästään loppuun asti ja lopussa on 0, muita siirtoja ei voi enää olla
+                    # jos päästään loppuun asti ja lopussa on 0, muita siirtoja ei voi enää olla
+                    if match == 0 and j == len(lst)-1:
                         skip = True
                         break
-                    if match != 0:
-                        if match == tile: # yhdistä laatta samaan laattaan
-                            self.board_state[tile_loc] *= 2
-                            self.board_state[match_loc] = 0
-                            legal = True
-                            self.score += self.board_state[tile_loc]
-                            if self.board_state[tile_loc] == 2048:
-                                self.won = True
-                            j += 1
-                            break
-                        elif tile == 0 and match != 0: # siirrä laatta tyhjään tilaan
-                            self.board_state[tile_loc] = match
-                            self.board_state[match_loc] = 0
-                            legal = True
-                        else:
-                            break
-                    else:
+                    # yhdistä laatta samaan laattaan
+                    if match == tile and match != 0:
+                        self.board_state[tile_loc] *= 2
+                        self.board_state[match_loc] = 0
+                        legal = True
+                        self.score += self.board_state[tile_loc]
+                        if self.board_state[tile_loc] == 2048:
+                            self.won = True
                         j += 1
-                #print(self)
-                #print(legal)
+                        break
+                    # siirrä laatta tyhjään tilaan
+                    if tile == 0 and match != 0:
+                        self.board_state[tile_loc] = match
+                        self.board_state[match_loc] = 0
+                        legal = True
+                    # laattaa ei voitu siirtää
+                    elif match == 0:
+                        j += 1
+                    else:
+                        break
         self.moves += 1
-        return True if legal else False # oliko siirto laillinen?
-            
+        return legal
 
-    def new_tile(self, odds=0.9): # luo uuden 2- tai 4-laatan (normaalisti 90% 2-laattoja)
+    def new_tile(self, odds:int=0.9):
+        """
+        Luo uusi 2- tai 4-laatta satunnaiseen sijaintiin
+
+        Parametrit
+        ----------
+        odds : int
+            Todennäköisyys, että laattan arvo on 2 (normaali 0.9)
+        """
         loc = choice(self.get_empty())
         if random() < odds:
             value = 2
@@ -107,20 +183,34 @@ class Board:
             value = 4
         self.insert_tile(value, loc)
 
+    def get_legal_moves(self):
+        """
+        Kokeilee kaikkia siirtoja ja palauttaa listan laillisista siirroista
+        """
+        moves = []
+        for i in range(3):
+            board_copy = Board(board_state=self.get_list())
+            if board_copy.move(i):
+                moves.append(i)
+        return moves
+
     def __str__(self):
+        """
+        Palauttaa pelikentän merkkijonona
+        """
         tile_width = len(str(max(self.board_state)))
         tiles = []
         for i in self.board_state:
-            n = tile_width - len(str(i))
-            tiles.append(n*" "+str(i))
-        
+            extra = tile_width - len(str(i))
+            tiles.append(extra*" "+str(i))
+
         return_string = ""
 
-        for i in range(len(tiles)):
-            return_string += tiles[i]
-            if i == 3 or i == 7 or i == 11:
+        for i in enumerate(tiles):
+            return_string += tiles[i[0]]
+            if i[0] in (3, 7, 11):
                 return_string += "\n" + "-"*(4*tile_width+9)+"\n"
-            elif i != 15:
+            elif i[0] != 15:
                 return_string += " | "
             else:
                 return_string += "\n"
