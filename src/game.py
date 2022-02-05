@@ -1,26 +1,34 @@
 from board import Board
+from minimax import Minimax
+from time import time
 
 class Game:
-    def __init__(self, terminal=True, board=Board()):
-        self.terminal = terminal
-        self.board = board
+    def __init__(self, player=True, print_to_terminal=True):
+        self.player = player
+        self.ptt = print_to_terminal
 
-        if self.terminal:
-            self.terminal_loop()
+        self.arrows = {0:"←", 1:"→", 2:"↓", 3:"↑"}
+    
+    def play(self):
+        self.board = Board()
+
+        if self.player:
+            return self.player_loop()
         else:
-            self.algorithm_loop()
+            return self.algorithm_loop()
 
-    def terminal_loop(self):
+    def player_loop(self):
         self.board.new_tile()
         while self.board.won is False:
-            print(f"Siirtoja: {str(self.board.get_moves())}\nPisteet: {self.board.get_score()}\n")
             self.board.new_tile()
-
-            print(self.board)
+            if self.ptt:
+                print(f"Siirtoja: {str(self.board.get_moves())}\nPisteet: {self.board.get_score()}\n")
+                print(self.board)
 
             if not self.board.get_legal_moves():
-                print("Ei laillisia siirtoja, hävisit pelin!")
-                print("Suurin laatta: "+str(max(self.board.get_list())))
+                if self.ptt:
+                    print("Ei laillisia siirtoja, hävisit pelin!")
+                    print("Suurin laatta: "+str(max(self.board.get_list())))
                 return False
             while True:
 
@@ -40,9 +48,27 @@ class Game:
                     print("Laiton siirto!")
                 else:
                     break
-        print("Voitit pelin!")
-        print(self.board)
+        if self.ptt:
+            print("Voitit pelin!")
+            print(self.board)
         return True
 
     def algorithm_loop(self):
-        pass
+        begin_time = time()
+        self.board.new_tile()
+        while True:
+            self.board.new_tile()
+            if self.ptt:
+                print(self.board)
+            move = Minimax(self.board).start(4)
+            if move is None:
+                break
+            if self.ptt:
+                print(self.arrows[move])
+            self.board.move(move)
+
+        finish_time = time() - begin_time
+        if self.ptt:
+            print(f"Siirrot: {self.board.get_moves()}\nPisteet: {self.board.get_score()}\nAika: {round(finish_time, 2)} s\nVoitto: {self.board.won}")
+        
+        return self.board.get_moves(), self.board.get_score(), finish_time, max(self.board.get_list())

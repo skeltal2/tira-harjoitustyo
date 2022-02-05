@@ -1,3 +1,4 @@
+from ast import Continue
 from random import choice, random
 
 class Board:
@@ -89,15 +90,48 @@ class Board:
 
     def get_list(self):
         """
-        Palauttaa kopion pelikentän laattojen arvoista
+        Palauttaa kopion pelikentän laattojen arvoista (list)
         """
         return self.board_state.copy()
 
     def get_score(self):
         """
-        Palauttaa pisteet
+        Palauttaa pisteet (int)
         """
         return self.score
+
+    def get_neighbors(self, loc:int):
+        """
+        Palauttaa laatan ensimmäisen viereisen laatan kaikkiin suuntiin
+        """
+        left = 0
+        right = 0
+        up = 0
+        down = 0
+
+        for row in self.rows:
+            if loc in row:
+                for i in row:
+                    if self.board_state[i] == 0:
+                        continue
+                    if i < loc:
+                        left = self.board_state[i]
+                    elif i > loc:
+                        right = self.board_state[i]
+                break
+                    
+        for col in self.cols:
+            if loc in col:
+                for i in col:
+                    if self.board_state[i] == 0:
+                        continue
+                    if i < loc:
+                        up = self.board_state[i]
+                    elif i > loc:
+                        down = self.board_state[i]
+                break
+
+        return left,right,up,down
 
     def move(self, direction:int):
         """
@@ -188,15 +222,21 @@ class Board:
         Kokeilee kaikkia siirtoja ja palauttaa listan laillisista siirroista
         """
         moves = []
-        for i in range(3):
+        for i in range(4):
             board_copy = Board(board_state=self.get_list())
             if board_copy.move(i):
                 moves.append(i)
-        return moves
+        return moves if len(moves) > 0 else None
+
+    def clone(self):
+        """
+        Luo uusi Board-olion samoilla arvoilla
+        """
+        return Board(self.get_list(), self.get_moves(), self.get_score())
 
     def __str__(self):
         """
-        Palauttaa pelikentän merkkijonona
+        Palauta pelikenttä merkkijonona
         """
         tile_width = len(str(max(self.board_state)))
         tiles = []

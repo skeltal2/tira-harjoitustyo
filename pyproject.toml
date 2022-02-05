@@ -5,10 +5,11 @@ description = ""
 authors = ["Joel Weinitchke <joel.weinitschke@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
+python = "^3.7"
 invoke = "^1.6.0"
 pylint = "^2.12.2"
 pytest = "^7.0.0"
+coverage = "^6.3.1"
 
 [tool.poetry.dev-dependencies]
 
