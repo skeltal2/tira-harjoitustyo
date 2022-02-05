@@ -11,3 +11,7 @@ def test(ctx):
 @task
 def pylint(ctx):
     ctx.run("pylint src/")
+
+@task
+def coverage(ctx):
+    ctx.run("coverage report")
