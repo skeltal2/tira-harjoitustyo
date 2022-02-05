@@ -14,7 +14,7 @@ Aloita peli:
 ```
 poetry run invoke start
 ```
-Peliä pelataan kirjoittamalla suunta (w, a, s, d) ja painamalla enter.
+Tämän jälkeen ohjelma kysyy, haluaako käyttäjä pelata itse vai käyttää (keskeneräistä) algoritmia. Peliä pelataan kirjoittamalla suunta (w, a, s, d) ja painamalla enter.
 
 Suorita testit:
 ```
