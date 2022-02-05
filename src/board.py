@@ -5,8 +5,6 @@ class Board:
     """
     Luo uuden pelilaudan
 
-    Atribuutit
-    ----------
     board_state : list
         Pelilaudan laattojen arvot
     moves : int
@@ -28,8 +26,6 @@ class Board:
         """
         Asettaa pelilaudan arvot
 
-        Parametrit
-        ----------
         board_state : list
             Pelilaudan laattojen arvot
         moves : int
@@ -63,8 +59,6 @@ class Board:
         """
         Luo uuden laatan
 
-        Parametrit
-        ----------
         value : int
             Laatan arvo
         location : int
@@ -102,7 +96,7 @@ class Board:
 
     def get_neighbors(self, loc:int):
         """
-        Palauttaa laatan ensimmäisen viereisen laatan kaikkiin suuntiin
+        Palauttaa laatan ensimmäisen viereisen laatan kaikkiin suuntiin (list)
         """
         left = 0
         right = 0
@@ -135,21 +129,14 @@ class Board:
 
     def move(self, direction:int):
         """
-        Siirtää kaikkia laattoja valittuun suuntaan
+        Siirtää kaikkia laattoja valittuun suuntaan. Palauttaa True jos siirto oli laillinen, muuten False.
 
-        Parametrit
-        ----------
         direction : int
             Suunta, mihin laattoja siirretään
             0: Vasen
             1: Oikea
             2: Alas
             3: Ylös
-
-        Palautukset
-        -------
-        legal : bool
-            Oliko siirto laillinen?
         """
         legal = False # jos mikään laatta ei liiku, siirto on laiton
         # vasen ja oikea siirto käyttää rivejä, ylös ja alas sarakkeita
@@ -205,8 +192,6 @@ class Board:
         """
         Luo uusi 2- tai 4-laatta satunnaiseen sijaintiin
 
-        Parametrit
-        ----------
         odds : int
             Todennäköisyys, että laattan arvo on 2 (normaali 0.9)
         """
@@ -219,7 +204,7 @@ class Board:
 
     def get_legal_moves(self):
         """
-        Kokeilee kaikkia siirtoja ja palauttaa listan laillisista siirroista
+        Kokeilee kaikkia siirtoja ja palauttaa listan laillisista siirroista (list)
         """
         moves = []
         for i in range(4):
@@ -230,13 +215,13 @@ class Board:
 
     def clone(self):
         """
-        Luo uusi Board-olion samoilla arvoilla
+        Luo uuden Board-olion samoilla arvoilla ja palauttaa sen (Board)
         """
         return Board(self.get_list(), self.get_moves(), self.get_score())
 
     def __str__(self):
         """
-        Palauta pelikenttä merkkijonona
+        Palauttaa pelikenttä listana (list)
         """
         tile_width = len(str(max(self.board_state)))
         tiles = []
