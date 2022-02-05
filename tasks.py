@@ -4,13 +4,17 @@ from invoke import task
 def start(ctx):
     ctx.run("python3 src/index.py")
 
-@task
-def test(ctx):
-    ctx.run("pytest")
+#@task
+#def test(ctx):
+#    ctx.run("pytest")
 
 @task
 def pylint(ctx):
     ctx.run("pylint src/")
+
+@task
+def test(ctx):
+    ctx.run("coverage run -m pytest")
 
 @task
 def coverage(ctx):
