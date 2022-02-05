@@ -4,7 +4,7 @@
 - [Määrittelydokumentti](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/maarittelydokumentti.md)
 - [Viikkoraportti 1](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikkoraportti1.md)
 - [Viikkoraportti 2](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikkoraportti2.md)
-- [Viikkoraportti 3](ttps://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikkoraportti3.md)
+- [Viikkoraportti 3](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikkoraportti3.md)
 
 ## Käyttöohje
 Asenna riippuvuudet:
