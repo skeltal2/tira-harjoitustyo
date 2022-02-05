@@ -17,11 +17,15 @@ poetry run invoke start
 ```
 Tämän jälkeen ohjelma kysyy, haluaako käyttäjä pelata itse vai käyttää (keskeneräistä) algoritmia. Peliä pelataan kirjoittamalla suunta (w, a, s, d) ja painamalla enter.
 
-Suorita testit:
+Testit:
 ```
 poetry run invoke test
 ```
-Suorita pylint:
+Testikattavuus:
+```
+poetry run invoke coverage
+```
+Pylint:
 ```
 poetry run invoke pylint
 ```
