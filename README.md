@@ -16,7 +16,11 @@ poetry run invoke start
 ```
 Peliä pelataan kirjoittamalla suunta (w, a, s, d) ja painamalla enter.
 
-Koska ainoa riippuvuus on invoke, pelin voi myös aloittaa suorittamalla:
+Suorita testit:
 ```
-python3 src/index.py
+poetry run invoke test
+```
+Suorita pylint:
+```
+poetry run invoke pylint
 ```
