@@ -97,8 +97,7 @@ class Minimax():
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
 
-        0 - 2 : 4
-        3 - 5 : 3
+        0 - 5 : 3
         6 - 9 : 2
         10+   : 1
 
@@ -111,8 +110,4 @@ class Minimax():
             return 1
         if free >= 6:
             return 2
-        if free >= 3:
-            return 3
-        if free >= 0:
-            return 4
-        return 2
+        return 3
