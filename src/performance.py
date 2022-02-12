@@ -1,6 +1,6 @@
 from game import Game
 
-runs = int(input("Kuinka monta peliä pelataan? Yksi peli kestää noin 100 - 300 sekuntia.\n"))
+runs = int(input("Kuinka monta peliä pelataan? Yksi peli kestää noin 60 - 180 sekuntia.\n"))
 
 game = Game(player=False, print_to_terminal=False, stop_when_win=True)
 WINS = 0

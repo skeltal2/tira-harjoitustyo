@@ -80,17 +80,16 @@ class Game:
         begin_time = time()
         self.board.new_tile()
         while True:
-            if self.sws and self.board.won:
-                print(self.board)
-                break
             self.board.new_tile()
             if self.ptt:
                 print(self.board)
+            if self.sws and self.board.won:
+                break
             move = Minimax(self.board).start()
             if move is None:
                 break
             if self.ptt:
-                print(self.arrows[move])
+                print(f"{self.arrows[move]} - Siirto {self.board.moves}\n")
             self.board.move(move)
 
         finish_time = time() - begin_time

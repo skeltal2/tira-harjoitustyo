@@ -14,7 +14,7 @@ class Minimax():
         self.board = board
         self.big_number = 10**9
 
-    def start(self, depth:int=5, use_dynamic=True):
+    def start(self, depth:int=5, use_dynamic:bool=True):
         """
         Aloita haku. Palauttaa parhaan siirron.
 
@@ -78,22 +78,9 @@ class Minimax():
             return move, value
 
         value = self.big_number
-        # Kokeillaan huonoimpia uusia laattoja
-        worst = (value,None,None)
+        # Kokeillaan kaikki mahdolliset 2- ja 4-laattojen sijainnit
         for i in board.get_empty():
             for tile in [2,4]:
-                b = board.clone()
-                b.insert_tile(tile,i)
-                eval = Heuristic(b).evaluate()
-                if eval < worst[0]:
-                    worst = (eval,i,tile)
-                    child_values = self.run(b.clone(), depth, move, alpha, beta, True)
-
-                    value = min((value,child_values[1]))
-                    beta = min((value, beta))
-                    if value < alpha:
-                        break
-                """
                 child = board.clone()
                 child.insert_tile(tile, i)
                 child_values = self.run(child.clone(), depth, move, alpha, beta, True)
@@ -102,7 +89,6 @@ class Minimax():
                 beta = min((value, beta))
                 if value < alpha:
                     break
-                """
         return move, value
 
     @classmethod
@@ -110,8 +96,7 @@ class Minimax():
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
 
-        0 - 3 : 4
-        4 - 5 : 3
+        0 - 5 : 3
         6 - 9 : 2
         10+   : 1
 
@@ -120,10 +105,10 @@ class Minimax():
         """
         free = len(board.get_empty())
 
-        if free <= 3:
-            return 4
-        if free <= 5:
+        #if free <= 1:
+        #   return 4
+        if free <= 8:
             return 3
-        if free <= 9:
+        if free <= 11:
             return 2
         return 1
