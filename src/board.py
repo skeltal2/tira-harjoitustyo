@@ -1,4 +1,3 @@
-from ast import Continue
 from random import choice, random
 
 class Board:
@@ -101,10 +100,10 @@ class Board:
         loc : int
             laatan sijainti
         """
-        left = 0
-        right = 0
-        up = 0
-        down = 0
+        d_left = 0
+        d_right = 0
+        d_up = 0
+        d_down = 0
 
         for row in self.rows:
             if loc in row:
@@ -112,29 +111,30 @@ class Board:
                     if self.board_state[i] == 0:
                         continue
                     if i < loc:
-                        left = self.board_state[i]
+                        d_left = self.board_state[i]
                     elif i > loc:
-                        right = self.board_state[i]
+                        d_right = self.board_state[i]
                         break
                 break
-                    
+
         for col in self.cols:
             if loc in col:
                 for i in col:
                     if self.board_state[i] == 0:
                         continue
                     if i < loc:
-                        up = self.board_state[i]
+                        d_up = self.board_state[i]
                     elif i > loc:
-                        down = self.board_state[i]
+                        d_down = self.board_state[i]
                         break
                 break
 
-        return left,right,up,down
+        return d_left,d_right,d_up,d_down
 
     def move(self, direction:int):
         """
-        Siirtää kaikkia laattoja valittuun suuntaan. Palauttaa True jos siirto oli laillinen, muuten False.
+        Siirtää kaikkia laattoja valittuun suuntaan.
+        Palauttaa True jos siirto oli laillinen, muuten False.
 
         direction : int
             Suunta, mihin laattoja siirretään

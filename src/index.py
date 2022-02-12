@@ -3,7 +3,7 @@ from game import Game
 while True:
     choice = input("\nKäytä algoritmia? (y/n): ")
     if choice == "n":
-        player = True
+        PLAYER = True
     else:
-        player = False
-    Game(player).play()
+        PLAYER = False
+    Game(PLAYER).play()

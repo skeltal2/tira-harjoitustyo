@@ -3,28 +3,17 @@ from board import Board
 from heuristic import Heuristic
 
 class Minimax():
+    """
+    Etsii parhaan siirron.
+
+    board : Board
+        Arvioitava pelikenttä
+    """
 
     def __init__(self, board=None):
         self.board = board
         self.big_number = 10**9
 
-    def score_test(self):
-        moves = self.board.get_legal_moves()
-        if moves is None:
-            return None
-        
-        scores = {}
-
-        for direction in range(4):
-            test_board = Board(board_state=self.board.get_list())
-            test_board.move(direction)
-
-            scores[direction] = test_board.get_score()
-        
-        best_moves = [d for d, v in scores.items() if v == max(scores.values())]
-
-        return choice(best_moves)
-    
     def start(self, depth:int=3, use_dynamic=True):
         """
         Aloita haku. Palauttaa parhaan siirron.
@@ -32,7 +21,8 @@ class Minimax():
         depth : int
             Syvyys
         use_dynamic : bool
-            Käyttää dynaamista syvyytta staattisen sijaan. Syvyys riippuu vapaiden laattojen määrästä.
+            Käyttää dynaamista syvyyttä staattisen sijaan.
+            Syvyys riippuu vapaiden laattojen määrästä.
         """
         if use_dynamic:
             depth = self.dynamic_depth(self.board)
@@ -46,13 +36,32 @@ class Minimax():
         return move
 
     def run(self, board:Board, depth:int, move:int, alpha:int, beta:int, maximizer:bool):
+        """
+        Suorita minimax haku.
+
+        board : Board
+            Arvioitava pelikenttä
+        depth : int
+            Haun syvyys
+        move : int
+            Paras siirto
+        alpha : int
+            Alfa arvo
+        beta : int
+            Beeta arvo
+        maximizer : bool
+            Kumman vuoro? (max vai min)
+        """
         moves = board.get_legal_moves()
         free = len(board.get_empty())
+        # Jos on päästy puun pohjalle, tai ei voida liikkua tai vapaita laattoja on paljon
+        # pysäytä haku.
         if depth == 0 or moves is None or (free > 5 and depth < 2):
             return move, Heuristic(board).evaluate()
 
         if maximizer:
             value = -self.big_number
+            # Kokeillaan kaikki mahdolliset siirrot
             for i in moves:
                 prev_value = value
                 child = board.clone()
@@ -67,23 +76,24 @@ class Minimax():
                     break
 
             return move, value
-        
-        else:
-            value = self.big_number
 
-            for i in board.get_empty():
-                for tile in [2,4]:
-                    child = board.clone()
-                    child.insert_tile(tile, i)
-                    child_values = self.run(child.clone(), depth, move, alpha, beta, True)
+        value = self.big_number
 
-                    value = min((value, child_values[1]))
-                    beta = min((value, beta))
-                    if value < alpha:
-                        break
-            return move, value
-    
-    def dynamic_depth(self, board):
+        # Kokeillaan kaikki mahdolliset 2- ja 4-laattojen sijainnit
+        for i in board.get_empty():
+            for tile in [2,4]:
+                child = board.clone()
+                child.insert_tile(tile, i)
+                child_values = self.run(child.clone(), depth, move, alpha, beta, True)
+
+                value = min((value, child_values[1]))
+                beta = min((value, beta))
+                if value < alpha:
+                    break
+        return move, value
+
+    @classmethod
+    def dynamic_depth(cls, board):
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
 
@@ -97,22 +107,12 @@ class Minimax():
         """
         free = len(board.get_empty())
 
-        lookup = {
-            0:4,
-            1:4,
-            2:4,
-            3:3,
-            4:3,
-            5:3,
-            10:1,
-            11:1,
-            12:1,
-            13:1,
-            14:1,
-            15:1
-        }
-
-        if free in lookup:
-            return lookup[free]
-        else:
+        if free >= 10:
+            return 1
+        if free >= 6:
             return 2
+        if free >= 3:
+            return 3
+        if free >= 0:
+            return 4
+        return 2

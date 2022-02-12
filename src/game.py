@@ -1,6 +1,6 @@
+from time import time
 from board import Board
 from minimax import Minimax
-from time import time
 
 class Game:
     """
@@ -21,18 +21,17 @@ class Game:
         self.ptt = print_to_terminal
         self.sws = stop_when_win
 
+        self.board = Board()
         self.arrows = {0:"←", 1:"→", 2:"↓", 3:"↑"}
 
     def play(self):
         """
         Aloita peli
         """
-        self.board = Board()
 
         if self.player:
             return self.player_loop()
-        else:
-            return self.algorithm_loop()
+        return self.algorithm_loop()
 
     def player_loop(self):
         """
@@ -42,7 +41,9 @@ class Game:
         while self.board.won is False:
             self.board.new_tile()
             if self.ptt:
-                print(f"Siirtoja: {str(self.board.get_moves())}\nPisteet: {self.board.get_score()}\n")
+                print(f"""Siirtoja: {
+                    str(self.board.get_moves())
+                    }\nPisteet: {self.board.get_score()}\n""")
                 print(self.board)
 
             if not self.board.get_legal_moves():
@@ -94,6 +95,11 @@ class Game:
 
         finish_time = time() - begin_time
         if self.ptt:
-            print(f"Siirrot: {self.board.get_moves()}\nPisteet: {self.board.get_score()}\nAika: {round(finish_time, 2)} s\nVoitto: {self.board.won}")
-        
-        return self.board.get_moves(), self.board.get_score(), finish_time, max(self.board.get_list())
+            print(f"""Siirrot: {self.board.get_moves()
+            }\nPisteet: {self.board.get_score()
+            }\nAika: {round(finish_time, 2)
+            } s\nVoitto: {self.board.won}""")
+
+        return (
+            self.board.get_moves(), self.board.get_score(), finish_time, max(self.board.get_list())
+            )
