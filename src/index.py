@@ -6,4 +6,4 @@ while True:
         PLAYER = True
     else:
         PLAYER = False
-    Game(PLAYER).play()
+    Game(PLAYER,stop_when_win=True).play()

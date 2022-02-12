@@ -25,8 +25,8 @@ class Heuristic():
 
         mono_weight = 1
         smooth_weight = 0.1
-        free_weight = 5
-        max_weight = 5
+        free_weight = 2.7
+        max_weight = 1
         score_weight = 0
 
         return sum((

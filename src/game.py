@@ -81,6 +81,7 @@ class Game:
         self.board.new_tile()
         while True:
             if self.sws and self.board.won:
+                print(self.board)
                 break
             self.board.new_tile()
             if self.ptt:
