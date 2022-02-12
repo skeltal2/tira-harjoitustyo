@@ -21,14 +21,13 @@ class Game:
         self.ptt = print_to_terminal
         self.sws = stop_when_win
 
-        self.board = Board()
         self.arrows = {0:"←", 1:"→", 2:"↓", 3:"↑"}
 
     def play(self):
         """
         Aloita peli
         """
-
+        self.board = Board()
         if self.player:
             return self.player_loop()
         return self.algorithm_loop()

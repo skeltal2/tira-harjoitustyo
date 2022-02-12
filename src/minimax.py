@@ -97,8 +97,9 @@ class Minimax():
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
 
-        0 - 5 : 3
-        6 - 9 : 2
+        0 - 2 : 4
+        3 - 4 : 3
+        5 - 9 : 2
         10+   : 1
 
         board : Board
@@ -106,8 +107,10 @@ class Minimax():
         """
         free = len(board.get_empty())
 
-        if free >= 10:
-            return 1
-        if free >= 6:
+        if free <= 2:
+            return 4
+        if free <= 4:
+            return 3
+        if free <= 9:
             return 2
-        return 3
+        return 1
