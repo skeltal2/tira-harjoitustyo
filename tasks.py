@@ -19,3 +19,7 @@ def test(ctx):
 @task
 def coverage(ctx):
     ctx.run("coverage report")
+
+@task
+def performance(ctx):
+    ctx.run("python3 src/performance.py")

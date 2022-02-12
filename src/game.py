@@ -3,13 +3,30 @@ from minimax import Minimax
 from time import time
 
 class Game:
-    def __init__(self, player=True, print_to_terminal=True):
+    """
+    Pelilogiikka luokka.
+
+    Pelaaja-tilassa palauttaa True, jos peli voitettiin, muuten False.
+    Algoritmi-tilassa palauttaa pelin tilastot.
+
+    player : bool
+        Luodaanko pelattava peli? Jos False, algoritmi pelaa.
+    print_to_terminal : bool
+        Tulostetaanko terminaaliin pelilauta joka vuoro?
+    stop_when_win : bool
+        Lopetetaanko peli, kun 2048-laatta on saavutettu.
+    """
+    def __init__(self, player=True, print_to_terminal=True, stop_when_win=False):
         self.player = player
         self.ptt = print_to_terminal
+        self.sws = stop_when_win
 
         self.arrows = {0:"←", 1:"→", 2:"↓", 3:"↑"}
-    
+
     def play(self):
+        """
+        Aloita peli
+        """
         self.board = Board()
 
         if self.player:
@@ -18,6 +35,9 @@ class Game:
             return self.algorithm_loop()
 
     def player_loop(self):
+        """
+        Pelilogiikka, jossa pelaaja tekee siirrot.
+        """
         self.board.new_tile()
         while self.board.won is False:
             self.board.new_tile()
@@ -54,13 +74,18 @@ class Game:
         return True
 
     def algorithm_loop(self):
+        """
+        Pelilogiikka, jossa algoritmi tekee siirrot
+        """
         begin_time = time()
         self.board.new_tile()
         while True:
+            if self.sws and self.board.won:
+                break
             self.board.new_tile()
             if self.ptt:
                 print(self.board)
-            move = Minimax(self.board).start(4)
+            move = Minimax(self.board).start()
             if move is None:
                 break
             if self.ptt:

@@ -3,7 +3,7 @@ from random import choice, random
 
 class Board:
     """
-    Luo uuden pelilaudan
+    Pelilauta luokka. Luo uuden pelilaudan kutsuessa.
 
     board_state : list
         Pelilaudan laattojen arvot
@@ -97,6 +97,9 @@ class Board:
     def get_neighbors(self, loc:int):
         """
         Palauttaa laatan ensimmäisen viereisen laatan kaikkiin suuntiin (list)
+
+        loc : int
+            laatan sijainti
         """
         left = 0
         right = 0
@@ -112,6 +115,7 @@ class Board:
                         left = self.board_state[i]
                     elif i > loc:
                         right = self.board_state[i]
+                        break
                 break
                     
         for col in self.cols:
@@ -123,6 +127,7 @@ class Board:
                         up = self.board_state[i]
                     elif i > loc:
                         down = self.board_state[i]
+                        break
                 break
 
         return left,right,up,down
