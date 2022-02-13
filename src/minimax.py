@@ -8,11 +8,14 @@ class Minimax():
 
     board : Board
         Arvioitava pelikenttä
+    stop_at_2048 : Bool
+        Kentät, jotka sisältävät 2048-laatan, saavat paljon lisäpisteitä
     """
 
-    def __init__(self, board=None):
+    def __init__(self, board=None, stop_at_2048=True):
         self.board = board
         self.big_number = 10**9
+        self.sa2 = stop_at_2048
 
     def start(self, depth:int=5, use_dynamic:bool=True):
         """
@@ -28,12 +31,13 @@ class Minimax():
             depth = self.dynamic_depth(self.board)
         result = self.run(self.board.clone(), depth, None, -self.big_number, self.big_number, True)
         move = result[0]
+        value = result[1]
         if move is None:
             moves = self.board.get_legal_moves()
             if moves is None:
-                return None
-            return choice(moves)
-        return move
+                return None, value
+            return choice(moves), value
+        return move, value
 
     def run(self, board:Board, depth:int, move:int, alpha:int, beta:int, maximizer:bool):
         """
@@ -56,7 +60,9 @@ class Minimax():
         free = len(board.get_empty())
         # Jos on päästy puun pohjalle, tai ei voida liikkua tai vapaita laattoja on paljon
         # pysäytä haku.
-        if depth == 0 or moves is None or (free > 5 and depth < 2):
+        if depth == 0 or moves is None or (free > 4 and depth < 2):
+            if moves is None:
+                return move, -self.big_number
             return move, Heuristic(board).evaluate()
 
         if maximizer:
@@ -69,6 +75,8 @@ class Minimax():
                 child_values = self.run(child.clone(), depth-1, i, alpha, beta, False)
 
                 value = max((value, child_values[1]))
+                if max(child.get_list()) == 2048 and self.sa2:
+                    value += 100
                 alpha = max((value, alpha))
                 if value > prev_value:
                     move = i

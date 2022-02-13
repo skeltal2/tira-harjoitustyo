@@ -21,20 +21,17 @@ class Heuristic():
         smooth = self.smoothness() # samat laatat vierekkäin
         free = self.free_tiles() # vapaat laatat
         maxt = self.max_tile() # suurin laatta
-        score = self.score() # pisteet
 
         mono_weight = 1
         smooth_weight = 0.1
-        free_weight = 2.5
-        max_weight = 1.5
-        score_weight = 0.2
+        free_weight = 2.45
+        max_weight = 1
 
         return sum((
             mono * mono_weight,
             smooth * smooth_weight,
             free * free_weight,
             maxt * max_weight,
-            score * score_weight
         ))
 
     def monotonicity(self):
@@ -115,13 +112,6 @@ class Heuristic():
         """
         free = len(self.board.get_empty())
         return log(free) if free != 0 else 0
-
-    def score(self):
-        """
-        Laske pisteiden logaritmi
-        """
-        score = self.board.get_score()
-        return log(score) if score != 0 else 0
 
     def tile_merges(self, location:int):
         """

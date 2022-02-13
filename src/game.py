@@ -19,7 +19,7 @@ class Game:
     def __init__(self, player=True, print_to_terminal=True, stop_when_win=False):
         self.player = player
         self.ptt = print_to_terminal
-        self.sws = stop_when_win
+        self.stop_ww = stop_when_win
 
         self.arrows = {0:"←", 1:"→", 2:"↓", 3:"↑"}
 
@@ -83,13 +83,15 @@ class Game:
             self.board.new_tile()
             if self.ptt:
                 print(self.board)
-            if self.sws and self.board.won:
+            if self.stop_ww and self.board.won:
                 break
-            move = Minimax(self.board).start()
+            result = Minimax(self.board,stop_at_2048=self.stop_ww).start()
+            move = result[0]
+            value = result[1]
             if move is None:
                 break
             if self.ptt:
-                print(f"{self.arrows[move]} - Siirto {self.board.moves}\n")
+                print(f"{self.arrows[move]} -- Siirto {self.board.moves} -- Kentän arvo {value}\n")
             self.board.move(move)
 
         finish_time = time() - begin_time

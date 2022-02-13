@@ -16,7 +16,7 @@ Aloita peli:
 ```
 poetry run invoke start
 ```
-Tämän jälkeen ohjelma kysyy, haluaako käyttäjä pelata itse vai käyttää (keskeneräistä) algoritmia. Peliä pelataan kirjoittamalla suunta (w, a, s, d) ja painamalla enter.
+Tämän jälkeen ohjelma kysyy, haluaako käyttäjä pelata itse vai käyttää (keskeneräistä) algoritmia. Peliä pelataan kirjoittamalla suunta (w, a, s, d) ja painamalla enter. Algoritmi ratkaisee (tai epäonnistuu) pelin noin 1000 siirrossa, mikä kestää noin 20 - 60 sekuntia.
 
 Testit:
 ```

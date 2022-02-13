@@ -8,4 +8,6 @@ Hitaan algoritmin suoritus:
 
 ![kuva](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikko4_suoritus.png)
 
-Ensiviikon tavoite on saada hitaampi algoritmi toimimaan nopeammin.
+Kuitenkin myöhemmin keksin tavan nopeuttaa suoritusaikaa paljon. Muutin maksimisyvyyden neljästä kolmeen, ja muutin minimaxin siten, että se lopettaa haun, jos vapaita laattoja on liikaa. Tämä vähensi suoritusajan noin 25 sekunttiin, mutta 2048-laatta saavutettiin vain noin 40% ajasta. Kuitenkin heuristiikan painojen arvojen muuttamisen jälkeen sain nostettua 2048-saavutuksen 80 %.
+
+![kuva](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikko4_suoritus_2.png)
