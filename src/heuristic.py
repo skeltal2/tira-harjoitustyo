@@ -111,7 +111,7 @@ class Heuristic():
         Laske vapaiden laattojen logaritmi
         """
         free = len(self.board.get_empty())
-        return log(free) if free != 0 else 0
+        return log(free) if free > 0 else 0
 
     def tile_merges(self, location:int):
         """
@@ -135,4 +135,4 @@ class Heuristic():
         i > 0 palauttaa log2(i)
         i = 0 palauttaa 0
         """
-        return log2(i) if i != 0 else 0
+        return log2(i) if i > 0 else 0

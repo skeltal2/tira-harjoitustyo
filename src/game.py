@@ -39,16 +39,14 @@ class Game:
         self.board.new_tile()
         while self.board.won is False:
             self.board.new_tile()
-            if self.ptt:
-                print(f"""Siirtoja: {
-                    str(self.board.get_moves())
-                    }\nPisteet: {self.board.get_score()}\n""")
-                print(self.board)
+            print(f"""Siirtoja: {
+                str(self.board.get_moves())
+                }\nPisteet: {self.board.get_score()}\n""")
+            print(self.board)
 
             if not self.board.get_legal_moves():
-                if self.ptt:
-                    print("Ei laillisia siirtoja, hävisit pelin!")
-                    print("Suurin laatta: "+str(max(self.board.get_list())))
+                print("Ei laillisia siirtoja, hävisit pelin!")
+                print("Suurin laatta: "+str(max(self.board.get_list())))
                 return False
             while True:
 
@@ -68,9 +66,8 @@ class Game:
                     print("Laiton siirto!")
                 else:
                     break
-        if self.ptt:
-            print("Voitit pelin!")
-            print(self.board)
+        print("Voitit pelin!")
+        print(self.board)
         return True
 
     def algorithm_loop(self):
@@ -96,11 +93,11 @@ class Game:
 
         finish_time = time() - begin_time
         if self.ptt:
-            print(f"""Siirrot: {self.board.get_moves()
+            print(f"""Siirrot: {self.board.get_moves()-1
             }\nPisteet: {self.board.get_score()
             }\nAika: {round(finish_time, 2)
             } s\nVoitto: {self.board.won}""")
 
         return (
-            self.board.get_moves(), self.board.get_score(), finish_time, max(self.board.get_list())
+            self.board.get_moves()-1, self.board.get_score(), finish_time, max(self.board.get_list())
             )
