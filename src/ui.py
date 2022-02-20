@@ -50,15 +50,15 @@ class UI():
 
         self.move_map = {
             # WASD
-            65:0,
-            68:1,
-            83:2,
-            87:3,
+            "a":0,
+            "d":1,
+            "s":2,
+            "w":3,
             # Nuolet
-            37:0,
-            39:1,
-            40:2,
-            38:3
+            "Left":0,
+            "Right":1,
+            "Down":2,
+            "Up":3
         }
 
         self.do_solve = False
@@ -137,8 +137,9 @@ class UI():
             self.labels[i].config(background = b_color)
     
     def keypress(self, event):
-        if event.keycode in self.move_map and not self.do_solve:
-            self.handle_game(event.keycode)
+        print(event)
+        if event.keysym in self.move_map and not self.do_solve:
+            self.handle_game(event.keysym)
     
     def handle_game(self, move):
         if self.move_map[move] in self.board.get_legal_moves():
