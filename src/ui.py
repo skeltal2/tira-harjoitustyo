@@ -3,18 +3,37 @@ from tkinter import ttk
 from tkinter.font import Font
 from tkinter.messagebox import showinfo
 from board import Board
+from minimax import Minimax
 
 class UI():
 
     def __init__(self):
         self.root = tk.Tk()
-        self.frm = ttk.Frame(self.root, padding=10)
-        self.frm.grid()
+        self.root.title("2048")
 
-        self.tile_font = Font(family="Clear Sans", size=20, weight="bold")
+        self.frm = ttk.Frame(
+            master=self.root,
+            padding=10,
+            #relief="solid"
+        )
+        self.frm.grid(column=0,row=0)
+
+        self.control_frm = ttk.Frame(
+            master=self.root,
+            padding=10,
+            #relief="solid"
+        )
+        self.control_frm.grid(column=1,row=0)
+
+        self.tile_font = Font(
+            family="Clear Sans",
+            size=40,
+            weight="bold"
+        )
+
         self.labels = []
         self.tiles = []
-        #[0,0,0,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192]
+
         self.color_map = {
             2:("#776e65", "#eee4da"),
             4:("#776e65", "#ede0c8"),
@@ -39,40 +58,74 @@ class UI():
             37:0,
             39:1,
             40:2,
-            38:3,
+            38:3
         }
 
+        self.do_solve = False
+
         self.board = Board()
-        self.board.new_tile()
+        self.setup_controls()
+
+    def setup_controls(self):
+        start_button = tk.Button(
+            master=self.control_frm,
+            text="Ratkaise!",
+            width=20,
+            height=4
+        )
+
+        exit_button = tk.Button(
+            master=self.control_frm,
+            text="Lopeta",
+            width=20,
+            height=4
+        )
+
+        start_button.bind('<ButtonRelease>', self.solve_button)
+        exit_button.bind('<ButtonRelease>', self.quit_button)
+
+        start_button.grid(row=0, column=0)
+        exit_button.grid(row=1, column=0)
+    
+    def solve_button(self, event):
+        self.do_solve = not self.do_solve
+        self.solve()
+    
+    def quit_button(self, event):
+        self.root.quit()
 
     def build_grid(self):
-        i = 0
         for y in range(4):
             for x in range(4):
                 text = tk.StringVar()
                 text.set(0)
-                label = ttk.Label(
+                label = tk.Label(
                     master=self.frm,
                     textvariable=text,
-                    padding=20,
                     font=self.tile_font,
-                    width=5,
-                    anchor="center"
+                    width=4,
+                    height=2,
+                    anchor="center",
                 )
-                label.grid(column=x,row=y)
+                label.grid(
+                    column=x,
+                    row=y,
+                    padx=2,
+                    pady=2
+                )
                 self.labels.append(label)
                 self.tiles.append(text)
-                i += 1
         self.update_grid()
     
     def update_grid(self):
+        #väri testi [0,0,0,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192]
         new_tiles = self.board.get_list()
         for i in range(16):
             tile = new_tiles[i]
             f_color = "#f9f6f2"
             if tile == 0:
                 self.tiles[i].set("")
-                b_color = "#eee4da"
+                b_color = "#cdc1b4"
             else:
                 self.tiles[i].set(tile)
                 if new_tiles[i] in self.color_map:
@@ -84,28 +137,49 @@ class UI():
             self.labels[i].config(background = b_color)
     
     def keypress(self, event):
-        if event.keycode in self.move_map:
+        if event.keycode in self.move_map and not self.do_solve:
             self.handle_game(event.keycode)
     
-    def handle_game(self,move):
-        moves = self.board.get_legal_moves()
-        if max(self.board.get_list()) == 2048:
-            showinfo(title="2048", message="Voitit Pelin!")
-            self.root.quit()
-        if moves is None:
-            showinfo(title="2048", message="Hävisit Pelin!")
-            self.root.quit()
-        elif self.move_map[move] in moves:
+    def handle_game(self, move):
+        if self.move_map[move] in self.board.get_legal_moves():
             self.board.move(self.move_map[move])
             self.board.new_tile()
             self.update_grid()
+
+        if max(self.board.get_list()) == 2048:
+            showinfo(title="2048", message="Voitit Pelin!")
+            self.root.quit()
+
+        if self.board.get_legal_moves() is None:
+            showinfo(title="2048", message="Hävisit Pelin!")
+            self.root.quit()
     
+    def solve(self, turn_time=10):
+        result = Minimax(self.board, True).start()
+        move = result[0]
+        value = result[1]
+
+        if max(self.board.get_list()) == 2048:
+            showinfo(title="2048", message="Voitit Pelin!")
+            self.root.quit()
+
+        if move is None:
+            showinfo(title="2048", message="Hävisit Pelin!")
+            self.root.quit()
+        else:
+            self.board.move(move)
+            self.board.new_tile()
+            self.update_grid()
+            if self.do_solve:
+                self.root.after(turn_time, self.solve)
+
     def display(self):
+        self.board.new_tile()
+        self.board.new_tile()
         self.build_grid()
         self.root.bind('<KeyPress>',self.keypress)
 
         self.root.mainloop()
-        
 
 if __name__ == "__main__":
     UI().display()
