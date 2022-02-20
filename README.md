@@ -23,7 +23,7 @@ Aloita peli käyttöliittymällä:
 ```
 poetry run invoke start-ui
 ```
-Käyttö liittymässä peliä pelataan joko WASD- tai nuolinäppäimillä. "Uusi Peli" aloittaa uuden pelin, "Lopeta" poistuu ohjelmasta, ja "Ratkaise!" käynnistää algoritmin. "Ratkaise"-napin alapuolella on valitsin, jolla voi valita minimi ajan, jonka algoritmi käyttää siirtoihin (millisekunneissa).
+Käyttöliittymässä peliä pelataan joko WASD- tai nuolinäppäimillä. "Uusi Peli" aloittaa uuden pelin, "Lopeta" poistuu ohjelmasta, ja "Ratkaise!" käynnistää algoritmin. "Ratkaise"-napin alapuolella on valitsin, jolla voi valita minimiajan, jonka algoritmi käyttää siirtoihin (millisekunneissa).
 
 Testit:
 ```
