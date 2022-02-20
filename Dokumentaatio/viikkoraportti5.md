@@ -1,0 +1,5 @@
+# Viikkoraportti 5
+
+Työmäärä: 12 h
+
+Tällä viikolla toteutin käyttöliittymän. Käyttöliittymä on tehty Tkinterin avulla ja se koostuu kahdesta osasta: pelilauta ja ohjaimet. Pelilauta koostuu 16 label-widgetistä, joista jokainen vastaa pelikentän ruutua. Joka kerta kun pelaaja tai algoritmi tekee siirron, kutsutaan metodia, joka asettaa jokaiselle widgetille oikean arvon. Pelilaudan värit ovat samoja, kuin alkuperäisen 2048-pelin värit, jotka katsoin alkuperäisen pelin CSS-koodista. Pelilaudan oikealla puolella on neljä eri ohjainta, "uusi peli"-, "lopeta"- ja "ratkaise"-napit ja valitsin. Napit toimivat samoin kuin ne on nimetty. Valitsemilla voi valita, kuinka nopeasti pelilauta päivitetään, jos algoritmia käytetään ratkaisemiseen. Koska algoritmi on joskus hitaampi, kuin valittu nopeus, valitin asettaa vain minimiajan, joka jokaisen siirron välissä voi olla. Jos algoritmi on käynnistetty, sen voi myös lopettaa kesken painamalla uudelleen "ratkaise"-nappia, jonka jälkeen peliä voi pelata normaalisti.
