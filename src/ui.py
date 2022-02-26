@@ -250,8 +250,8 @@ class UI():
     def solve(self):
         result = Minimax(self.board, stop_at_2048=self.stop_at_2048.get()).start()
         move = result[0]
-        #value = result[1]
-        #print(value)
+        value = result[1]
+        print(value)
 
         if max(self.board.get_list()) == 2048 and not self.game_over and self.stop_at_2048.get():
             self.game_over = True

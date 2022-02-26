@@ -115,8 +115,8 @@ class Minimax():
 
         #if free <= 1:
         #   return 4
-        if free <= 8:
+        if free <= 7:
             return 3
-        if free <= 12:
+        if free <= 11:
             return 2
         return 1
