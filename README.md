@@ -17,13 +17,12 @@ Aloita peli:
 ```
 poetry run invoke start
 ```
-Tämän jälkeen ohjelma kysyy, haluaako käyttäjä pelata itse vai käyttää algoritmia. Peliä pelataan kirjoittamalla suunta (w, a, s, d) ja painamalla enter. Algoritmi ratkaisee (tai epäonnistuu) pelin noin 1000 siirrossa, mikä kestää noin 20 - 60 sekuntia.
+Peliä pelataan joko WASD- tai nuolinäppäimillä. "Uusi Peli" aloittaa uuden pelin, "Lopeta" poistuu ohjelmasta, ja "Ratkaise!" käynnistää algoritmin. "Ratkaise"-napin alapuolella on valitsin, jolla voi valita minimiajan, jonka algoritmi käyttää siirtoihin (millisekunneissa). Yksi peli kestää noin 1000 siirtoa tai 30-60 sekuntia.
 
-Aloita peli käyttöliittymällä:
+Pelin voi myös aloittaa ilman käyttöliittymää komennolla
 ```
-poetry run invoke start-ui
+poetry run invoke start -no-ui
 ```
-Käyttöliittymässä peliä pelataan joko WASD- tai nuolinäppäimillä. "Uusi Peli" aloittaa uuden pelin, "Lopeta" poistuu ohjelmasta, ja "Ratkaise!" käynnistää algoritmin. "Ratkaise"-napin alapuolella on valitsin, jolla voi valita minimiajan, jonka algoritmi käyttää siirtoihin (millisekunneissa).
 
 Testit:
 ```
