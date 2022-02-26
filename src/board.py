@@ -95,10 +95,10 @@ class Board:
 
     def get_neighbors(self, loc:int):
         """
-        Palauttaa laatan ensimmäisen viereisen laatan kaikkiin suuntiin (list)
+        Palauttaa valitun laatan ensimmäisen viereisen laatan arvon kaikkiin suuntiin (list)
 
         loc : int
-            laatan sijainti
+            valitun laatan sijainti
         """
         d_left = 0
         d_right = 0

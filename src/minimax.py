@@ -60,7 +60,7 @@ class Minimax():
         free = len(board.get_empty())
         # Jos on päästy puun pohjalle, tai ei voida liikkua tai vapaita laattoja on paljon
         # pysäytä haku.
-        if depth == 0 or moves is None or (free > 4 and depth < 2):
+        if depth == 0 or moves is None or (free > 5 and depth < 2):
             if moves is None:
                 return move, -self.big_number
             return move, Heuristic(board).evaluate()
@@ -104,9 +104,9 @@ class Minimax():
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
 
-        0 - 5 : 3
-        6 - 9 : 2
-        10+   : 1
+        0 - 7 : 3
+        8 - 11 : 2
+        12+   : 1
 
         board : Board
             Arvioitava pelikenttä
@@ -117,6 +117,6 @@ class Minimax():
         #   return 4
         if free <= 8:
             return 3
-        if free <= 11:
+        if free <= 12:
             return 2
         return 1

@@ -76,6 +76,7 @@ class UI():
 
         self.do_solve = False
         self.game_over = False
+
         self.arrows = {0:"←", 1:"→", 2:"↓", 3:"↑"}
 
         self.board = Board()
@@ -133,16 +134,27 @@ class UI():
         )
         self.turn_timer.set(25)
 
+        self.stop_at_2048 = tk.BooleanVar()
+        self.stop_at_2048.set(True)
+        win_condition = tk.Checkbutton(
+            master=self.control_frm,
+            text="2048 voittaa pelin",
+            variable=self.stop_at_2048,
+            onvalue=True,
+            offvalue=False
+        )
+
         start_button.bind('<ButtonRelease>', self.solve_button)
         new_game_button.bind('<ButtonRelease>', self.new_game_button)
         exit_button.bind('<ButtonRelease>', self.quit_button)
 
-        move_label.grid(row=2, pady=2)
-        score_label.grid(row=3, pady=2)
+        move_label.grid(row=3, pady=2)
+        score_label.grid(row=4, pady=2)
         start_button.grid(row=0, pady=2)
-        new_game_button.grid(row=4, pady=2)
-        exit_button.grid(row=5, pady=2)
+        new_game_button.grid(row=5, pady=2)
+        exit_button.grid(row=6, pady=2)
         self.turn_timer.grid(row=1, pady=2)
+        win_condition.grid(row=2, pady=2)
 
     def solve_button(self, event):
         self.do_solve = not self.do_solve
@@ -225,7 +237,7 @@ class UI():
             self.board.new_tile()
             self.update_grid()
 
-        if max(self.board.get_list()) == 2048 and not self.game_over:
+        if max(self.board.get_list()) == 2048 and not self.game_over and self.stop_at_2048.get():
             self.game_over = True
             showinfo(title="2048", message="Voitit Pelin!")
             return
@@ -236,11 +248,12 @@ class UI():
             return
 
     def solve(self):
-        result = Minimax(self.board, True).start()
+        result = Minimax(self.board, stop_at_2048=self.stop_at_2048.get()).start()
         move = result[0]
         #value = result[1]
+        #print(value)
 
-        if max(self.board.get_list()) == 2048 and not self.game_over:
+        if max(self.board.get_list()) == 2048 and not self.game_over and self.stop_at_2048.get():
             self.game_over = True
             showinfo(title="2048", message="Voitit Pelin!")
             return
@@ -249,7 +262,7 @@ class UI():
             self.game_over = True
             showinfo(title="2048", message="Hävisit Pelin!")
             return
-        
+
         self.board.move(move)
         self.move_display.set(self.arrows[move])
         self.board.new_tile()

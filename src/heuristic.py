@@ -22,9 +22,9 @@ class Heuristic():
         free = self.free_tiles() # vapaat laatat
         maxt = self.max_tile() # suurin laatta
 
-        mono_weight = 1.6
-        smooth_weight = 0.2
-        free_weight = 2.5
+        mono_weight = 1.5
+        smooth_weight = 0.1
+        free_weight = 2
         max_weight = 1
 
         return sum((
@@ -93,6 +93,8 @@ class Heuristic():
         lst = self.board.get_list()
 
         for i, tile in enumerate(lst):
+            if tile == 0:
+                continue
             for neighbor in self.board.get_neighbors(i):
                 if neighbor == 0:
                     continue
@@ -112,22 +114,6 @@ class Heuristic():
         """
         free = len(self.board.get_empty())
         return log(free) if free > 0 else 0
-
-    def tile_merges(self, location:int):
-        """
-        Palautaa saman arvoisten naapurien määrän (int)
-
-        location : int
-            laatan sijainti
-        """
-        merges = 0
-        lst = self.board.get_list()
-
-        for i in self.board.get_neighbors(location):
-            if i == lst[location]:
-                merges += 1
-
-        return merges
 
     @classmethod
     def log_zero(cls, i):
