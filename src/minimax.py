@@ -113,8 +113,8 @@ class Minimax():
         """
         free = len(board.get_empty())
 
-        #if free <= 1:
-        #   return 4
+        if free <= 1:
+           return 4
         if free <= 7:
             return 3
         if free <= 11:
