@@ -3,7 +3,7 @@ from board import Board
 
 class Heuristic():
     """
-    Luo uusi Heuristic-olio.
+    Luo uusi Heuristic-olio.\n
     evaluate() laskee heuristisen arvon.
 
     board : Board
@@ -81,12 +81,12 @@ class Heuristic():
                     # Vähennä alas arvoa
                     mono_scores[3] += cur_value - next_value
 
-        # Palauttaa parhaan kulman. Ensin oikea vai vasen, sitten ylös vai alas.
+        # Palauttaa parhaan kulman monotonisuuden. Ensin oikea vai vasen, sitten ylös vai alas.
         return max([mono_scores[0], mono_scores[1]]) + max(mono_scores[2], mono_scores[3])
 
     def smoothness(self):
         """
-        Laske kuinka tasainen pelikentta on, eli kuinka paljon naapurilaattojen arvot eroavat.
+        Laske kuinka tasainen pelikenttä on, eli kuinka paljon naapurilaattojen arvot eroavat.
         Paras tasaisuus on 0.
         """
         smth_score = 0
@@ -110,7 +110,7 @@ class Heuristic():
 
     def free_tiles(self):
         """
-        Laske vapaiden laattojen logaritmi
+        Laske vapaiden laattojen log e
         """
         free = len(self.board.get_empty())
         return log(free) if free > 0 else 0
@@ -118,7 +118,7 @@ class Heuristic():
     @classmethod
     def log_zero(cls, i):
         """
-        i > 0 palauttaa log2(i)
+        i > 0 palauttaa log2(i)\n
         i = 0 palauttaa 0
         """
         return log2(i) if i > 0 else 0

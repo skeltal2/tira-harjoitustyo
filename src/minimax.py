@@ -17,7 +17,7 @@ class Minimax():
         self.big_number = 10**9
         self.sa2 = stop_at_2048
 
-    def start(self, depth:int=5, use_dynamic:bool=True):
+    def start(self, depth:int=3, use_dynamic:bool=True):
         """
         Aloita haku. Palauttaa parhaan siirron.
 
@@ -41,7 +41,7 @@ class Minimax():
 
     def run(self, board:Board, depth:int, move:int, alpha:int, beta:int, maximizer:bool):
         """
-        Suorita minimax haku.
+        Suorita minimax haku alfa-beeta karsinnalla.
 
         board : Board
             Arvioitava pelikenttä
@@ -103,10 +103,6 @@ class Minimax():
     def dynamic_depth(cls, board):
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
-
-        0 - 7 : 3
-        8 - 11 : 2
-        12+   : 1
 
         board : Board
             Arvioitava pelikenttä

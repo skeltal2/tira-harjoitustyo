@@ -4,6 +4,12 @@ class Board:
     """
     Pelilauta luokka. Luo uuden pelilaudan kutsuessa.
 
+    Laattojen sijainnit:\n
+    00 | 01 | 02 | 03\n
+    04 | 05 | 06 | 07\n
+    08 | 09 | 10 | 11\n
+    12 | 13 | 14 | 15\n
+
     board_state : list
         Pelilaudan laattojen arvot
     moves : int
@@ -11,15 +17,6 @@ class Board:
     score : int
         Pisteiden määrä
     """
-
-    # Laattojen sijainnit:
-    # 00 | 01 | 02 | 03
-    # -----------------
-    # 04 | 05 | 06 | 07
-    # -----------------
-    # 08 | 09 | 10 | 11
-    # -----------------
-    # 12 | 13 | 14 | 15
 
     def __init__(self, board_state:list=None, moves:int=0, score:int=0):
         """
