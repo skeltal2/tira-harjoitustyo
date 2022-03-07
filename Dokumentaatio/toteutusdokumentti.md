@@ -10,7 +10,7 @@ Syntyneet parhaat arvon palautetaan minimoinnille, joka valitsee huonoimman arvo
 
 ## Arviointi-algoritmi
 
-Arviointi-algoritmi käyttää neljää eri arvoa pelikentän heuristisen arvon laskemiseen. Nämä ovat: monotonisuus, tasaisuus, vapaiden laattojen määrä, ja suurimman laatan arvo. Pelikentän heuristisen arvon saamiseksi, jokainen arvo ensin kerrotaan jollain painolla, ja sitten kaikki arvot lasketaan yhteen. Monotonisuus ja tasaisuus ovat rankaisevia, ne voivat vain vähentää heuristisista arvoa, eli suurin mahdollisen monotonisuus tai tasaisuus on 0. Vapaiden laattojen määrä, ja suurimman laatan arvo lisäävät heuristisista arvoa.
+Arviointi-algoritmi käyttää neljää eri arvoa pelikentän heuristisen arvon laskemiseen. Nämä ovat: monotonisuus, tasaisuus, vapaiden laattojen määrä, ja suurimman laatan arvo. Pelikentän heuristisen arvon saamiseksi, jokainen arvo ensin kerrotaan jollain painolla, ja sitten kaikki arvot lasketaan yhteen. Monotonisuus ja tasaisuus ovat rankaisevia, ne voivat vain vähentää heuristisista arvoa, eli suurin mahdollisen monotonisuus tai tasaisuus on 0. Vapaiden laattojen määrä, ja suurimman laatan arvo lisäävät heuristisista arvoa, eli niiden huonoin arvo on 0.
 
 ### Monotonisuus
 
