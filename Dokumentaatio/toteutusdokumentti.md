@@ -28,7 +28,7 @@ B) Monotonisuus on -4 (vasen -12, oikea 0, ylös -4, alas -4)
 
 ![image](https://user-images.githubusercontent.com/77693693/157098746-e2f89f5a-8e3d-411d-8e26-131837a8953f.png)
 
-C) Monotonisuus on -16 (vasen -6, oikea -6, ylös -6, alas -6)
+C) Monotonisuus on -12 (vasen -6, oikea -6, ylös -6, alas -6)
 
 ![image](https://user-images.githubusercontent.com/77693693/157099222-a05130a2-f949-4e4a-b773-bdcc14d72cbc.png)
 
