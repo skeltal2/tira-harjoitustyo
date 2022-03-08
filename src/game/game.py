@@ -74,6 +74,7 @@ class Game:
         """
         Pelilogiikka, jossa algoritmi tekee siirrot
         """
+        value_table = {}
         begin_time = time()
         self.board.new_tile()
         while True:
@@ -90,6 +91,9 @@ class Game:
             if self.ptt:
                 print(f"{self.arrows[move]} -- Siirto {self.board.moves} -- Kentän arvo {value}\n")
             self.board.move(move)
+            high = max(self.board.get_list())
+            if high not in value_table and high not in [2,4,8]:
+                value_table[max(self.board.get_list())] = self.board.get_moves()
 
         finish_time = time() - begin_time
         if self.ptt:
@@ -98,6 +102,10 @@ class Game:
             }\nAika: {round(finish_time, 2)
             } s\nVoitto: {self.board.won}""")
 
-        return (
-            self.board.get_moves()-1, self.board.get_score(), finish_time, max(self.board.get_list())
-            )
+        return {
+            "moves" : self.board.get_moves(),
+            "time" : finish_time,
+            "score" : self.board.get_score(),
+            "win" : self.board.won,
+            "values" : value_table
+        }

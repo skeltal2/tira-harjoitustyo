@@ -1,8 +1,12 @@
-from invoke import task
+from invoke import task, Responder
 
 @task(optional=["no_ui"])
 def start(ctx, no_ui=False):
-    ctx.run("python3 src/index.py")
+    if no_ui:
+        r = Responder(pattern=r"ui", response="N\n")
+    else:
+        r = Responder(pattern=r"ui", response="Y\n")
+    ctx.run("python3 src/index.py",watchers=[r])
 
 @task
 def pylint(ctx):
@@ -18,5 +22,5 @@ def coverage(ctx):
     ctx.run("coverage html")
 
 @task
-def performance(ctx):
-    ctx.run("python3 src/performance/performance.py")
+def perf(ctx):
+    ctx.run("python3 src/performance.py")

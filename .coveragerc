@@ -1,5 +1,2 @@
 [run]
 source = src/logic
-
-[html]
-soure = src/logic

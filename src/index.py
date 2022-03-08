@@ -1,11 +1,11 @@
 from game.game import Game
 from game.ui import UI
 
-ui = True
+ui = input("ui")
 
-if ui:
+if ui == "Y":
     UI().display()
-else:
+elif ui == "N":
     while True:
         choice = input("\nKäytä algoritmia? (y/n): ")
         if choice == "n":

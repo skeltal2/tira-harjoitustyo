@@ -1,5 +1,5 @@
 from math import log2, log
-from logic.board import Board
+from .board import Board
 
 class Heuristic():
     """
