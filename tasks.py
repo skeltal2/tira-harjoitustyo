@@ -1,12 +1,12 @@
-from invoke import task, Responder
+from invoke import task
 
 @task(optional=["no_ui"])
 def start(ctx, no_ui=False):
     if no_ui:
-        r = Responder(pattern=r"ui", response="N\n")
+        ctx.run("python src/index_t.py")
     else:
-        r = Responder(pattern=r"ui", response="Y\n")
-    ctx.run("python src/index.py",watchers=[r])
+        ctx.run("python src/index_u.py")
+    
 
 @task
 def pylint(ctx):
