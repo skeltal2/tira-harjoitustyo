@@ -58,6 +58,6 @@ Suurin laatta vaikuttaa heuristiseen arvoon vain, kun on mahdollista luoda uusi 
 
 #### Esimerkki
 
-A) Tyhjiä laattoja on 6, eli tyhjien arvojen arvo on noin 1,6. Suurin laatta on 2048, eli suurimman laatan arvo on 11.
+A) Tyhjiä laattoja on 6, eli tyhjien laattojen arvo on noin 1,6. Suurin laatta on 2048, eli suurimman laatan arvo on 11.
 
 ![image](https://user-images.githubusercontent.com/77693693/157108777-28f10f11-d6b9-4d0f-ac32-92dc46b86169.png)
