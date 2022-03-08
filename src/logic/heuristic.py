@@ -1,5 +1,5 @@
 from math import log2, log
-from board import Board
+from logic.board import Board
 
 class Heuristic():
     """
@@ -60,10 +60,10 @@ class Heuristic():
                 # Vertaa kuinka paljon laatat eroavat
                 if cur_value > next_value:
                     # Vähennä vasen arvoa
-                    mono_scores[0] += next_value - cur_value
+                    mono_scores[1] += next_value - cur_value
                 elif next_value > cur_value:
                     # Vähennä oikea arvoa
-                    mono_scores[1] += cur_value - next_value
+                    mono_scores[0] += cur_value - next_value
 
         # Käy läpi ylös ja alas
         for col in cols:
@@ -76,10 +76,10 @@ class Heuristic():
 
                 if cur_value > next_value:
                     # Vähennä ylös arvoa
-                    mono_scores[2] += next_value - cur_value
+                    mono_scores[3] += next_value - cur_value
                 elif next_value > cur_value:
                     # Vähennä alas arvoa
-                    mono_scores[3] += cur_value - next_value
+                    mono_scores[2] += cur_value - next_value
 
         # Palauttaa parhaan kulman monotonisuuden. Ensin oikea vai vasen, sitten ylös vai alas.
         return max([mono_scores[0], mono_scores[1]]) + max(mono_scores[2], mono_scores[3])

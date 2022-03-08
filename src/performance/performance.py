@@ -1,4 +1,4 @@
-from game import Game
+from game.game import Game
 
 runs = int(input("Kuinka monta peliä pelataan? Yksi peli kestää noin 30 - 120 sekuntia:\n"))
 

@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter.font import Font
 from tkinter.messagebox import showinfo
-from board import Board
-from minimax import Minimax
+from logic.board import Board
+from logic.minimax import Minimax
 
 class UI():
 
@@ -207,6 +207,7 @@ class UI():
             str(self.board.get_moves())
         )
         new_tiles = self.board.get_list()
+
         for i in range(16):
             tile = new_tiles[i]
             f_color = "#f9f6f2"

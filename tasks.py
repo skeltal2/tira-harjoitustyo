@@ -2,18 +2,7 @@ from invoke import task
 
 @task(optional=["no_ui"])
 def start(ctx, no_ui=False):
-    if no_ui:
-        ctx.run("python3 src/index.py")
-    else:
-        ctx.run("python3 src/ui.py")
-
-#@task
-#def start_ui(ctx):
-#    ctx.run("python3 src/ui.py")
-
-#@task
-#def test(ctx):
-#    ctx.run("pytest")
+    ctx.run("python3 src/index.py")
 
 @task
 def pylint(ctx):
@@ -26,7 +15,8 @@ def test(ctx):
 @task
 def coverage(ctx):
     ctx.run("coverage report")
+    ctx.run("coverage html")
 
 @task
 def performance(ctx):
-    ctx.run("python3 src/performance.py")
+    ctx.run("python3 src/performance/performance.py")

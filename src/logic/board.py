@@ -223,7 +223,7 @@ class Board:
 
     def __str__(self):
         """
-        Palauttaa pelikenttä listana (list)
+        Palauta pelikenttä listana (list)
         """
         tile_width = len(str(max(self.board_state)))
         tiles = []

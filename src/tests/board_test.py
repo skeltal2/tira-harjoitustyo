@@ -1,4 +1,4 @@
-from board import Board
+from logic.board import Board
 
 def test_move_row():
     board = Board(board_state=[

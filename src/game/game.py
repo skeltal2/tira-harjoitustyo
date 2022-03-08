@@ -1,6 +1,6 @@
 from time import time
-from board import Board
-from minimax import Minimax
+from logic.board import Board
+from logic.minimax import Minimax
 
 class Game:
     """

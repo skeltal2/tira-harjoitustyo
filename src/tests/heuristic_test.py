@@ -1,6 +1,6 @@
 from math import log
-from heuristic import Heuristic
-from board import Board
+from logic.board import Board
+from logic.heuristic import Heuristic
 
 def test_mono():
     board = Board(board_state=[
