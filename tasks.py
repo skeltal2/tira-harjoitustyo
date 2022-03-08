@@ -6,7 +6,7 @@ def start(ctx, no_ui=False):
         r = Responder(pattern=r"ui", response="N\n")
     else:
         r = Responder(pattern=r"ui", response="Y\n")
-    ctx.run("python3 src/index.py",watchers=[r])
+    ctx.run("python src/index.py",watchers=[r])
 
 @task
 def pylint(ctx):
@@ -23,4 +23,4 @@ def coverage(ctx):
 
 @task
 def perf(ctx):
-    ctx.run("python3 src/performance.py")
+    ctx.run("python src/performance.py")
