@@ -50,7 +50,7 @@ B) Tasaisuus on -8 (Naapureita on yhteensä 8, jokaisen laatan naapuri on kaksi 
 
 ### Tyhjät laatat ja suurin laatta
 
-Tyhjät laatat ja suurin laatta ovat yksinkertaisia arvoja, kummankin arvo on vain nimensä mukaisen arvon logaritmi. Tyhjät laatat lasketaan luonnollisella logaritmilla, ja suurin laatta kahden logaritmilla. Tämä on siksi, että suurin laatta on aina kahden potenssi, mutta tyhjiä laattoja voi olla mikä tahansa määrä nollan ja viidentoista välillä.
+Tyhjät laatat ja suurin laatta ovat yksinkertaisia arvoja, kummankin arvo on vain nimensä mukaisen arvon logaritmi. Tyhjät laatat lasketaan luonnollisella logaritmilla, ja suurin laatta kahden logaritmilla. Tämä on siksi, että suurin laatta on aina jokin kahden potenssi, mutta tyhjiä laattoja voi olla vain alle 15.
 
 Tyhjien laattojen tarkoitus on estää pelin päättyminen. Peli päättyy, jos laillisia siirtoja ei ole. Jos tyhjiä laattoja on ainakin yksi, laillisia siirtoja on ainakin kaksi. On siis tärkeää pitää tyhjien laattojen määrä korkealla.
 
