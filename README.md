@@ -3,6 +3,7 @@
 ## Dokumentaatio
 - [Määrittelydokumentti](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/maarittelydokumentti.md)
 - [Toteutusdokumentti](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/toteutusdokumentti.md)
+- [Testausdokumentti](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/testausdokumentti.md)
 - [Käyttöohje](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/kayttoohje.md)
 
 ### Viikkoraportit
