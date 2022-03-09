@@ -28,15 +28,17 @@ Algoritmin tarkkuutta, eli sen kykyvä saavuttaa 2048-laatta, mitatessa pitää 
 
 ## Testauksen tulokset
 
-Data kerättiin suorittamalla 50 peliä.
+### Testi 1
+Data kerättiin suorittamalla 50 peliä. 2048-laatan saavuttaminen päätti pelin.
 
 ![tarkkuus](https://user-images.githubusercontent.com/77693693/157531050-b5cc5a50-5922-4c85-aa6c-313cf72b1d07.svg)
 
 - 50 pelistä 70% saavutti 2048-laatan
-- Suorittamiseen meni yhtensä 1750,3988 sekuntia
+- Suorittamiseen meni yhtensä 1750,3988 sekuntia (noin 30 minuuttia)
 - Yksi peli kesti keskimäärin 35 sekuntia
 - Yhteensä 48 930 siirtoa
-- Eli yhteen siirtoon meni keskimäärin 35 millisekuntia
+- Eli yhteen siirtoon meni keskimäärin 35,8 millisekuntia
+- Yksi peli päättyi 128-laattaan (!?)
 
 | Arvo | Määrä | Osa |
 |------|-------|-----|
@@ -44,3 +46,21 @@ Data kerättiin suorittamalla 50 peliä.
 | 1024 | 47    | 94% |
 | 512  | 49    | 98% |
 | <512 | 50    | 100%|
+
+### Testi 2
+Data kerättiin suorittamalla 50 peliä. Peli jatkui kun 2048-laatta oli saavutettu.
+
+![tarkkuus](https://user-images.githubusercontent.com/77693693/157554400-4f1c7b82-95e0-4fd8-b63c-96d86553f882.svg)
+
+- 50 pelistä 68% saavutti 2048-laatan
+- Suorittamiseen meni yhteensä 2493,3492 sekuntia (noin 42 minuuttia)
+- Yksi peli kesti keskimäärin 50 sekuntia
+- Yhteensä 72 269 siirtoa
+- Eli yhteen siirtoon meni keskimäärin 34,5 millisekuntia
+
+| Arvo | Määrä | Osa |
+|------|-------|-----|
+| 4096 | 1     | 2%  |
+| 2048 | 34    | 68% |
+| 1024 | 48    | 96% |
+| ≤512 | 50    | 100%|
