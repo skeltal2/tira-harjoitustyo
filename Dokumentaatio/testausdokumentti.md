@@ -33,9 +33,10 @@ Data kerättiin suorittamalla 50 peliä.
 ![tarkkuus](https://user-images.githubusercontent.com/77693693/157531050-b5cc5a50-5922-4c85-aa6c-313cf72b1d07.svg)
 
 - 50 pelistä 70% saavutti 2048-laatan
-- Suorittamiseen meni 1750,3988 sekuntia
+- Suorittamiseen meni yhtensä 1750,3988 sekuntia
+- Yksi peli kesti keskimäärin 35 sekuntia
 - Yhteensä 48 930 siirtoa
-- Eli yhteen siirtoon meni keskimäärin 35 ms
+- Eli yhteen siirtoon meni keskimäärin 35 millisekuntia
 
 | Arvo | Määrä | Osa |
 |------|-------|-----|
