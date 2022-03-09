@@ -17,7 +17,7 @@ A) Käynnistä ratkaisualgoritmi
 
 B) Valitse kuinka monta millisekuntia algoritmi odottaa vähintään jokaisen siirron välissä
 
-C) Pysähtyykö peli kun 2048-laatta on saavutettu (vaikuttaa myös algoritmin toimintaan)
+C) Pysähtyykö peli, kun 2048-laatta on saavutettu (vaikuttaa myös algoritmin toimintaan)
 
 D) Viimeisimmän siirron suunta
 
@@ -29,7 +29,7 @@ G) Poistu ohjelmasta
 
 ## Pelin pelaaminen
 
-2048 on pulmapeli, jonka tavoitteena on laattoja yhdistämällä muodostaa 2048-laatta. Pelinkenttä on 4 x 4 ruudukko, jossa on laattoja. Jokaisella laatalla on arvo, joka on jokin kahden potenssi. Pelilaudalla olevia laattoja voi siirtä neljään eri suuntaan (vasen, oikea, ylös, alas), jolloin kaikki laatat liikkuvat valittuun suuntaan. Jos mikään laatta ei siirry, siirto on laiton eikä sitä voitehdä. Jos kaksi saman arvoista laattaa törmää toisiinsa, ne yhdistyvät yhdeksi laataksi, jonka arvo on yhdistyneiden laattojen summa. Jokaisella siirrolla pelilaudalle syntyy uusi laatta, jonka arvo on joka 2 tai 4. Peli päätty, jos laillisia siirtoja ei voi enää tehdä.
+2048 on pulmapeli, jonka tavoitteena on laattoja yhdistämällä muodostaa 2048-laatta. Pelinkenttä on 4 x 4 ruudukko, jossa on laattoja. Jokaisella laatalla on arvo, joka on jokin kahden potenssi. Pelilaudalla olevia laattoja voi siirtää neljään eri suuntaan (vasen, oikea, ylös, alas), jolloin kaikki laatat liikkuvat valittuun suuntaan. Jos mikään laatta ei siirry, siirto on laiton eikä sitä voi tehdä. Jos kaksi saman arvoista laattaa törmää toisiinsa, ne yhdistyvät yhdeksi laataksi, jonka arvo on yhdistyneiden laattojen summa. Jokaisella siirrolla pelilaudalle syntyy uusi laatta, jonka arvo on joka 2 tai 4. Peli päättyy, jos laillisia siirtoja ei voi enää tehdä.
 
 Ohjelman peliä pelataan joko nuolinäppäimillä tai WASD-näppäimillä.
 
@@ -40,7 +40,7 @@ Ohjelman voi myös suorittaa kokonaan terminaalissa komennolla:
 poetry run invoke start --no-ui
 ```
 
-Tämän jälkeen ohjelma kysyy haluaako käyttäjä käyttää algoritmia (y/n). Jos käyttäjä valitsee (y), algoritmi käynnistyy. Jos käyttäjä valitsee (n), peliä voi pelata ASCII grafiikoilla. Ohjelmasta voi poistua missä tahansa vaiheessa Ctrl+C näppäinyhdistelmällä.
+Tämän jälkeen ohjelma kysyy, haluaako käyttäjä käyttää algoritmia (y/n). Jos käyttäjä valitsee (y), algoritmi käynnistyy. Jos käyttäjä valitsee (n), peliä voi pelata ASCII grafiikoilla. Ohjelmasta voi poistua missä tahansa vaiheessa Ctrl+C näppäinyhdistelmällä.
 
 Testit suoritetaan komennolla:
 ```
