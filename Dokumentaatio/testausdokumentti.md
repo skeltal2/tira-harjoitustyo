@@ -63,4 +63,4 @@ Data kerättiin suorittamalla 50 peliä. Peli jatkui, kun 2048-laatta oli saavut
 | 4096 | 1     | 2%  |
 | 2048 | 34    | 68% |
 | 1024 | 48    | 96% |
-| ≤512 | 50    | 100%|
+|  512 | 50    | 100%|
