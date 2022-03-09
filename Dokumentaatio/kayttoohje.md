@@ -57,7 +57,7 @@ Ohjelman suorituskykyä voi testata komennolla:
 poetry run invoke perf
 ```
 
-Suorituskykyä testatessa ohjelma kysyy ensin montako peliä algoritmi pelaa. Tämän jälkeen ohjelma suorittaa algoritmin käyttäjän antaman määrän verran. Testin tulokset voi nähdä  ```sq_test.json``` ja ```test_results.json``` tiedostoista. ```sq_test.json``` tiedostossa kaikkien tähän asti suoritettujen pelien tarkkuus jokaiselle eri pelille. ```test_results.json``` tiedostossa on jokaisen pelin tiedot (aika, pisteet, suurin laatta, jne.)
+Suorituskykyä testatessa ohjelma kysyy montako peliä algoritmi pelaa, ja päättykö peli kun 2048 on saavutettu. Tämän jälkeen ohjelma suorittaa algoritmin käyttäjän antaman määrän verran. Testin tulokset voi nähdä  ```sq_test.json``` ja ```test_results.json``` tiedostoista. ```sq_test.json``` tiedostossa kaikkien tähän asti suoritettujen pelien tarkkuus jokaiselle eri pelille. ```test_results.json``` tiedostossa on jokaisen pelin tiedot (aika, pisteet, suurin laatta, jne.)
 
 Pylintin voi suorittaa komennolla:
 ```
