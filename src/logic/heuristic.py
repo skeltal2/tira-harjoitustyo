@@ -21,17 +21,20 @@ class Heuristic():
         smooth = self.smoothness() # samat laatat vierekkäin
         free = self.free_tiles() # vapaat laatat
         maxt = self.max_tile() # suurin laatta
+        force = self.force_corner() # suurin laatta kulmassa
 
-        mono_weight = 1.2
+        mono_weight = 1
         smooth_weight = 0.1
         free_weight = 2.5
         max_weight = 1
+        force_corner_weight = 1.4
 
         return sum((
             mono * mono_weight,
             smooth * smooth_weight,
             free * free_weight,
             maxt * max_weight,
+            force * force_corner_weight
         ))
 
     def monotonicity(self):
@@ -60,10 +63,10 @@ class Heuristic():
                 # Vertaa kuinka paljon laatat eroavat
                 if cur_value > next_value:
                     # Vähennä vasen arvoa
-                    mono_scores[1] += next_value - cur_value
+                    mono_scores[0] += next_value - cur_value
                 elif next_value > cur_value:
                     # Vähennä oikea arvoa
-                    mono_scores[0] += cur_value - next_value
+                    mono_scores[1] += cur_value - next_value
 
         # Käy läpi ylös ja alas
         for col in cols:
@@ -76,10 +79,10 @@ class Heuristic():
 
                 if cur_value > next_value:
                     # Vähennä ylös arvoa
-                    mono_scores[3] += next_value - cur_value
+                    mono_scores[2] += next_value - cur_value
                 elif next_value > cur_value:
                     # Vähennä alas arvoa
-                    mono_scores[2] += cur_value - next_value
+                    mono_scores[3] += cur_value - next_value
 
         # Palauttaa parhaan kulman monotonisuuden. Ensin oikea vai vasen, sitten ylös vai alas.
         return max([mono_scores[0], mono_scores[1]]) + max(mono_scores[2], mono_scores[3])
@@ -114,6 +117,23 @@ class Heuristic():
         """
         free = len(self.board.get_empty())
         return log(free) if free > 0 else 0
+    
+    def force_corner(self):
+        """
+        Onko suurin laatta kulmassa?
+        """
+        lst = self.board.get_list()
+        max_tile = max(lst)
+        force_score = 0
+
+        if len([i for i in lst if i == max_tile]) > 1:
+            return 0
+        for i, tile in enumerate(lst):
+            if tile == max_tile:
+                if len([i for i in self.board.get_neighbors(i) if i != 0]) > 2:
+                    force_score -= self.log_zero(tile)
+        
+        return force_score
 
     @classmethod
     def log_zero(cls, i):

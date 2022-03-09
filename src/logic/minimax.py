@@ -1,4 +1,3 @@
-
 from random import choice
 from .board import Board
 from .heuristic import Heuristic
@@ -31,6 +30,7 @@ class Minimax():
         result = self.run(self.board.clone(), depth, None, -self.big_number, self.big_number, True)
         move = result[0]
         value = result[1]
+
         if move is None:
             moves = self.board.get_legal_moves()
             if moves is None:
@@ -55,7 +55,7 @@ class Minimax():
             Kumman vuoro? (max vai min)
         """
         moves = board.get_legal_moves()
-        free = len(board.get_empty())
+
         # Jos on päästy puun pohjalle, tai ei voida liikkua pysäytä haku.
         if depth == 0 or moves is None:
             if moves is None:
@@ -72,10 +72,8 @@ class Minimax():
                 child_values = self.run(child.clone(), depth-1, i, alpha, beta, False)
 
                 value = max((value, child_values[1]))
-                if max(child.get_list()) == 2048 and self.sa2:
-                    value += 100
                 alpha = max((value, alpha))
-                if value > prev_value:
+                if value != prev_value:
                     move = i
                 if value > beta:
                     break
@@ -91,7 +89,7 @@ class Minimax():
             child_2.insert_tile(2, i)
             child_4.insert_tile(4, i)
 
-            if Heuristic(child_2).evaluate() < Heuristic(child_4).evaluate():
+            if Heuristic(child_2).smoothness() < Heuristic(child_4).smoothness():
                 child = child_2
             else:
                 child = child_4
@@ -102,7 +100,7 @@ class Minimax():
             beta = min((value, beta))
             if value < alpha:
                 break
-        return move, value
+        return None, value
 
     @classmethod
     def dynamic_depth(cls, board):

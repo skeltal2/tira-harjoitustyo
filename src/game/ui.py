@@ -132,7 +132,7 @@ class UI():
             from_=1,
             to=1000,
         )
-        self.turn_timer.set(25)
+        self.turn_timer.set(1)
 
         self.stop_at_2048 = tk.BooleanVar()
         self.stop_at_2048.set(True)
