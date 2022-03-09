@@ -10,7 +10,7 @@ Syntyneet parhaat arvon palautetaan minimoinnille, joka valitsee huonoimman arvo
 
 ## Arviointi-algoritmi
 
-Arviointi-algoritmi käyttää neljää eri arvoa pelikentän heuristisen arvon laskemiseen. Nämä ovat: monotonisuus, tasaisuus, vapaiden laattojen määrä, ja suurimman laatan arvo. Pelikentän heuristisen arvon saamiseksi, jokainen arvo ensin kerrotaan jollain painolla, ja sitten kaikki arvot lasketaan yhteen. Monotonisuus ja tasaisuus ovat rankaisevia, ne voivat vain vähentää heuristisista arvoa, eli suurin mahdollisen monotonisuus tai tasaisuus on 0. Vapaiden laattojen määrä, ja suurimman laatan arvo lisäävät heuristisista arvoa, eli niiden huonoin arvo on 0.
+Arviointi-algoritmi käyttää viittä eri arvoa pelikentän heuristisen arvon laskemiseen. Nämä ovat: monotonisuus, tasaisuus, vapaiden laattojen määrä, suurimman laatan arvo, suurimman laatan sijainti. Pelikentän heuristisen arvon saamiseksi jokainen arvo ensin kerrotaan jollain painolla, ja sitten kaikki arvot lasketaan yhteen. Monotonisuus, tasaisuus ja suurimman laatan sijainti ovat rankaisevia, ne voivat vain vähentää heuristisista arvoa, eli suurin mahdollisen monotonisuus tai tasaisuus on 0. Vapaiden laattojen määrä, ja suurimman laatan arvo lisäävät heuristisista arvoa, eli niiden huonoin arvo on 0.
 
 ### Monotonisuus
 
@@ -48,13 +48,15 @@ B) Tasaisuus on -8 (Naapureita on yhteensä 8, jokaisen laatan naapuri on kaksi 
 
 ![image](https://user-images.githubusercontent.com/77693693/157104947-75fbef68-f373-4d3d-8a79-e3f6eda50b81.png)
 
-### Tyhjät laatat ja suurin laatta
+### Tyhjät laatat, ja suurimman laatan arvo ja sijanti
 
-Tyhjät laatat ja suurin laatta ovat yksinkertaisia arvoja, kummankin arvo on vain nimensä mukaisen arvon logaritmi. Tyhjät laatat lasketaan luonnollisella logaritmilla, ja suurin laatta kahden logaritmilla. Tämä on siksi, että suurin laatta on aina jokin kahden potenssi, mutta tyhjiä laattoja voi olla vain alle 15.
+Tyhjät laatat ja suurimman laatan arvo ovat yksinkertaisia arvoja, kummankin arvo on vain nimensä mukaisen arvon logaritmi. Tyhjät laatat lasketaan luonnollisella logaritmilla, ja suurin laatta kahden logaritmilla. Tämä on siksi, että suurin laatta on aina jokin kahden potenssi, mutta tyhjiä laattoja voi olla vain alle 15.
 
 Tyhjien laattojen tarkoitus on estää pelin päättyminen. Peli päättyy, jos laillisia siirtoja ei ole. Jos tyhjiä laattoja on ainakin yksi, laillisia siirtoja on ainakin kaksi. On siis tärkeää pitää tyhjien laattojen määrä korkealla.
 
-Suurin laatta vaikuttaa heuristiseen arvoon vain, kun on mahdollista luoda uusi suurin laatta. Koska pelin tarkoituksena on luoda 2048-laatta, pelikentän arvo nousee, kun sen suurimman laatan arvo nousee.
+Suurimman laatan arvo vaikuttaa heuristiseen arvoon vain, jos suurimman laatan arvo kasvaa. Sen tarkoitus on vähentää kentän laattojen määrää ja ohjata algoritmia luomaan uusi suurin laatta, jos se on mahdollista. Pelin tarkoituksena on luoda 2048-laatta, joka voidaan saavuttaa vain kasvattamalla suurimman laatan arvoa. Se myös auttaa lisäämään tyhjien laattojen määrää, koska usein suurimman laatan muodostamiseen tarvitaan useita laattoja, jotka vapautuvat, kun suurin laatta muodostetaan.
+
+Suurimman laatan sijainti vähentää heuristisista arvoa, jos suurin laatta ei ole kulmassa. Sen tarkoituksena on helpottaa suurimman laatan kasvattamista. Jos suurin laatta ei ole kulmassa, on mahdollista, että sen kummallekin puolella kasaantuu laattoja. Esimerkiksi 1024-laatan kummallekin puolelle voi muodostua 512-laatta, joita on vaikea yhdistää. Tämä myös vie kolme laattaa, jotka voitaisiin yhdistää yhdeksi laataksi, mikä tekee pelilaudan täyttymisestä todennäköisempää. Jos suurin laatta on kulmassa, muut suuret laatat kasautuvat sen vierekkäisille reunoille, joista ne on helppo yhdistää.
 
 #### Esimerkki
 
@@ -64,4 +66,4 @@ A) Tyhjiä laattoja on 6, eli tyhjien laattojen arvo on noin 1,6. Suurin laatta 
 
 ## Lähteet
 
-https://stackoverflow.com/questions/22342854/what-is-the-optimal-algorithm-for-the-game-2048/22389702#22389702 - Algoritmin idea
+https://stackoverflow.com/questions/22342854/what-is-the-optimal-algorithm-for-the-game-2048/22389702#22389702 - Algoritmin idea ja monotonisuuden laskeminen
