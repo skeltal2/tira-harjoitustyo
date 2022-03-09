@@ -278,6 +278,3 @@ class UI():
         self.root.bind('<KeyPress>',self.keypress)
 
         self.root.mainloop()
-
-if __name__ == "__main__":
-    UI().display()

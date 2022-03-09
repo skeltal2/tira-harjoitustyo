@@ -107,5 +107,6 @@ class Game:
             "time" : finish_time,
             "score" : self.board.get_score(),
             "win" : self.board.won,
-            "values" : value_table
+            "values" : value_table,
+            "max" : max(self.board.get_list())
         }

@@ -22,7 +22,7 @@ class Heuristic():
         free = self.free_tiles() # vapaat laatat
         maxt = self.max_tile() # suurin laatta
 
-        mono_weight = 1.6
+        mono_weight = 1.2
         smooth_weight = 0.1
         free_weight = 2.5
         max_weight = 1

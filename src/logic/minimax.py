@@ -1,3 +1,4 @@
+
 from random import choice
 from .board import Board
 from .heuristic import Heuristic
@@ -5,7 +6,6 @@ from .heuristic import Heuristic
 class Minimax():
     """
     Etsii parhaan siirron.
-
     board : Board
         Arvioitava pelikenttä
     stop_at_2048 : Bool
@@ -20,7 +20,6 @@ class Minimax():
     def start(self, depth:int=3, use_dynamic:bool=True):
         """
         Aloita haku. Palauttaa parhaan siirron.
-
         depth : int
             Syvyys
         use_dynamic : bool
@@ -42,7 +41,6 @@ class Minimax():
     def run(self, board:Board, depth:int, move:int, alpha:int, beta:int, maximizer:bool):
         """
         Suorita minimax haku alfa-beeta karsinnalla.
-
         board : Board
             Arvioitava pelikenttä
         depth : int
@@ -58,9 +56,8 @@ class Minimax():
         """
         moves = board.get_legal_moves()
         free = len(board.get_empty())
-        # Jos on päästy puun pohjalle, tai ei voida liikkua tai vapaita laattoja on paljon
-        # pysäytä haku.
-        if depth == 0 or moves is None or (free > 5 and depth < 2):
+        # Jos on päästy puun pohjalle, tai ei voida liikkua pysäytä haku.
+        if depth == 0 or moves is None:
             if moves is None:
                 return move, -self.big_number
             return move, Heuristic(board).evaluate()
@@ -86,32 +83,37 @@ class Minimax():
             return move, value
 
         value = self.big_number
-        # Kokeillaan kaikki mahdolliset 2- ja 4-laattojen sijainnit
+        # Kokeillaan kaikki vapaat paikat kummallakin laatalla ja jatketaan hakua huonommalla
         for i in board.get_empty():
-            for tile in [2,4]:
-                child = board.clone()
-                child.insert_tile(tile, i)
-                child_values = self.run(child.clone(), depth, move, alpha, beta, True)
+            child_2 = board.clone()
+            child_4 = board.clone()
 
-                value = min((value, child_values[1]))
-                beta = min((value, beta))
-                if value < alpha:
-                    break
+            child_2.insert_tile(2, i)
+            child_4.insert_tile(4, i)
+
+            if Heuristic(child_2).evaluate() < Heuristic(child_4).evaluate():
+                child = child_2
+            else:
+                child = child_4
+
+            child_values = self.run(child.clone(), depth, move, alpha, beta, True)
+
+            value = min((value, child_values[1]))
+            beta = min((value, beta))
+            if value < alpha:
+                break
         return move, value
 
     @classmethod
     def dynamic_depth(cls, board):
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
-
         board : Board
             Arvioitava pelikenttä
         """
         free = len(board.get_empty())
 
-        #if free <= 1:
-        #   return 4
-        if free <= 7:
+        if free <= 6:
             return 3
         if free <= 11:
             return 2
