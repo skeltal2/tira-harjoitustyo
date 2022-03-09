@@ -24,4 +24,22 @@ Suorituskykyä mitataan ```performance.py``` moduulilla. Moduuli suorittaa käyt
 - Kuinka monta siirtoa jokaisen arvon saavuttamiseen meni?
 - Mikä oli suurin saavutettu arvo
 
-Algoritmin tarkkuutta, eli sen kykyvä saavuttaa 2048-laatta, mitatessa pitää suorittaa noin 40 peliä. Alemmilla arvoilla, esimerkiksi 20 pelillä, tarkkuus voi vaihdella jopa 40 prosenttiyksilöllä, eli suuri määrä pelejä on pelattava, jotta tarkkuus lasketaan tarkasti. Tarkkuus jokaisen pelin jälkeen kirjoitetaan ```sq_wins.json``` tiedostoon.
+Algoritmin tarkkuutta, eli sen kykyvä saavuttaa 2048-laatta, mitatessa pitää suorittaa noin 30 peliä. Alemmilla arvoilla, esimerkiksi 10 pelillä, tarkkuus voi vaihdella jopa 30 prosenttiyksilöllä, eli suuri määrä pelejä on pelattava, jotta tarkkuus lasketaan tarkasti. Tarkkuus jokaisen pelin jälkeen kirjoitetaan ```sq_wins.json``` tiedostoon.
+
+## Testauksen tulokset
+
+Data kerättiin suorittamalla 50 peliä.
+
+![tarkkuus](https://user-images.githubusercontent.com/77693693/157531050-b5cc5a50-5922-4c85-aa6c-313cf72b1d07.svg)
+
+- 50 pelistä 70% saavutti 2048-laatan
+- Suorittamiseen meni 1750,3988 sekuntia
+- Yhteensä 48 930 siirtoa
+- Eli yhteen siirtoon meni keskimäärin 35 ms
+
+| Arvo | Määrä | Osa |
+|------|-------|-----|
+| 2048 | 35    | 70% |
+| 1024 | 47    | 94% |
+| 512  | 49    | 98% |
+| <512 | 1     | 100%|
