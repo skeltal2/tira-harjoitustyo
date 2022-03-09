@@ -15,11 +15,11 @@
 
 ## Lyhyt käyttöohje
 
-Asenna riippuvuudet:
+Asenna riippuvuudet komennolla:
 ```
 poetry install
 ```
-Aloita ohjelma:
+Aloita ohjelma komennolla:
 ```
 poetry run invoke start
 ```
