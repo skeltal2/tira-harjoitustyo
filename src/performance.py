@@ -3,7 +3,14 @@ import json
 
 def run_test():
     runs = int(input("Kuinka monta peliä pelataan? Yksi peli kestää noin 30 - 60 sekuntia:\n"))
-    game = Game(player=False, print_to_terminal=False, stop_when_win=True)
+    stop_in = input("Pysähdy kun 2048 on saavutettu? (y/n)\n")
+
+    if stop_in.lower() == "n":
+        stop = False
+    else:
+        stop = True
+
+    game = Game(player=False, print_to_terminal=False, stop_when_win=stop)
 
     games = {}
     wins = 0
@@ -24,4 +31,5 @@ def run_test():
         json.dump(sq_wins, file, ensure_ascii=False, indent=4)
     print("Valmis!")
 
-run_test()
+if __name__ == "__main__":
+    run_test()
