@@ -21,7 +21,7 @@ Suorituskykyä mitataan ```performance.py``` moduulilla. Moduuli suorittaa käyt
 - Pisteet
 - Siirtojen määrät
 - Voitettiinko peli
-- Kuinka monta siirtoa jokaisen arvon saavuttamiseen meni?
+- Kuinka monta siirtoa jokaisen arvon saavuttamiseen meni
 - Mikä oli suurin saavutettu arvo
 
 Algoritmin tarkkuutta, eli sen kykyä saavuttaa 2048-laatta, mitatessa pitää suorittaa noin 30 peliä. Alemmilla arvoilla, esimerkiksi 10 pelillä, tarkkuus voi vaihdella jopa 30 prosenttiyksilöllä, eli suuri määrä pelejä on pelattava, jotta tarkkuus lasketaan tarkasti. Tarkkuus jokaisen pelin jälkeen kirjoitetaan ```sq_wins.json``` tiedostoon.
