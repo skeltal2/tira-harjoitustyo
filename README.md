@@ -19,7 +19,7 @@ Asenna riippuvuudet:
 ```
 poetry install
 ```
-Aloita peli:
+Aloita ohjelma:
 ```
 poetry run invoke start
 ```
