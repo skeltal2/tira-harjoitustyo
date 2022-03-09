@@ -71,3 +71,5 @@ B) Oikeasta yläkulmasta voidaan helposti muodostaa 2048-laatta kolmella siirrol
 ## Lähteet
 
 https://stackoverflow.com/questions/22342854/what-is-the-optimal-algorithm-for-the-game-2048/22389702#22389702 - Algoritmin idea ja monotonisuuden laskeminen
+
+https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning - Apua alfa-beeta karisnnan toteutukseen
