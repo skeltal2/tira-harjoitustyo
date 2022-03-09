@@ -3,6 +3,7 @@
 ## Dokumentaatio
 - [Määrittelydokumentti](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/maarittelydokumentti.md)
 - [Toteutusdokumentti](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/toteutusdokumentti.md)
+- [Käyttöohje](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/kayttoohje.md)
 
 ### Viikkoraportit
 - [Viikkoraportti 1](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikkoraportti1.md)
@@ -12,7 +13,8 @@
 - [Viikkoraportti 5](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikkoraportti5.md)
 - [Viikkoraportti 6](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/viikkoraportti6.md)
 
-## Käyttöohje
+## Lyhyt käyttöohje
+
 Asenna riippuvuudet:
 ```
 poetry install
@@ -21,22 +23,5 @@ Aloita peli:
 ```
 poetry run invoke start
 ```
-Peliä pelataan joko WASD- tai nuolinäppäimillä. "Uusi Peli" aloittaa uuden pelin, "Lopeta" poistuu ohjelmasta, ja "Ratkaise!" käynnistää algoritmin. "Ratkaise"-napin alapuolella on valitsin, jolla voi valita minimiajan, jonka algoritmi käyttää siirtoihin (millisekunneissa). Yksi peli kestää noin 1000 siirtoa tai 30-60 sekuntia.
 
-Pelin voi myös aloittaa ilman käyttöliittymää komennolla
-```
-poetry run invoke start -no-ui
-```
-
-Testit:
-```
-poetry run invoke test
-```
-Testikattavuus:
-```
-poetry run invoke coverage
-```
-Pylint:
-```
-poetry run invoke pylint
-```
+Koko käyttöohjeen voi katsoa [tästä](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/kayttoohje.md).
