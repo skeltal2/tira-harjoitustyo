@@ -27,7 +27,7 @@ class Heuristic():
         smooth_weight = 0.1
         free_weight = 2.5
         max_weight = 1
-        force_corner_weight = 1.4
+        force_corner_weight = 1.5
 
         return sum((
             mono * mono_weight,
