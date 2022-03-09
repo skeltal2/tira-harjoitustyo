@@ -64,7 +64,7 @@ A) Tyhjiä laattoja on 6, eli tyhjien laattojen arvo on noin 1,6. Suurin laatta 
 
 ![image](https://user-images.githubusercontent.com/77693693/157108777-28f10f11-d6b9-4d0f-ac32-92dc46b86169.png)
 
-B) Oikeasta yläkulmasta voidaan helposti muodostaa 2048-laatta kolmella siirrolla (vasen, ylös vasen). Vasen alakuma tarvisee paljon enemmän siirtoja, koska suurin laatta ei ole kulmassa.
+B) Oikeasta yläkulmasta voidaan helposti muodostaa 2048-laatta kolmella siirrolla (vasen → ylös → vasen). Vasen alakuma tarvisee paljon enemmän siirtoja, koska suurin laatta ei ole kulmassa.
 
 ![image](https://user-images.githubusercontent.com/77693693/157549583-836fd885-4a68-4cfc-8ae2-6a888cb667ec.png)
 
@@ -72,4 +72,4 @@ B) Oikeasta yläkulmasta voidaan helposti muodostaa 2048-laatta kolmella siirrol
 
 https://stackoverflow.com/questions/22342854/what-is-the-optimal-algorithm-for-the-game-2048/22389702#22389702 - Algoritmin idea ja monotonisuuden laskeminen
 
-https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning - Apua alfa-beeta karisnnan toteutukseen
+https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning - Apua alfa-beeta karsinnan toteutukseen
