@@ -5,6 +5,7 @@ from .heuristic import Heuristic
 class Minimax():
     """
     Etsii parhaan siirron.
+
     board : Board
         Arvioitava pelikenttä
     """
@@ -16,6 +17,7 @@ class Minimax():
     def start(self, depth:int=3, use_dynamic:bool=True):
         """
         Aloita haku. Palauttaa parhaan siirron.
+
         depth : int
             Syvyys
         use_dynamic : bool
@@ -38,6 +40,7 @@ class Minimax():
     def run(self, board:Board, depth:int, move:int, alpha:int, beta:int, maximizer:bool):
         """
         Suorita minimax haku alfa-beeta karsinnalla.
+
         board : Board
             Arvioitava pelikenttä
         depth : int
@@ -103,6 +106,7 @@ class Minimax():
     def dynamic_depth(cls, board):
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
+        
         board : Board
             Arvioitava pelikenttä
         """
