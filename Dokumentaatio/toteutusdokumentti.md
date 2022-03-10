@@ -1,5 +1,26 @@
 # Toteutusdokumentti
 
+## Rakenne
+
+Ohjelma koostuu kahdesta eri moduulista, ```logic``` ja ```game```. ```logic``` hallitsee pelin logiikan, eli pelikentän, laatat, ja tilastot, ja kummatkin algoritmit. ```game``` sisältää graafisen ja ASCII käyttöliittymän. Kumpikin hallitsee algoritmien kutsumisen ja pelaajan syötteen tulkitsemisen eri tavalla.
+
+#### Tiedostorakenne
+- src
+  - logic
+    - board.py
+    - minimax.py
+    - heuristic.py
+  - game
+    - game.py
+    - ui.py
+  - performance.py
+  - index_t.py
+  - index_u.py
+  - tests
+- tasks.py
+
+```tasks.py``` sisältää komennot. Kun ohjelma käynnistetään ```start``` komennolla, se käynnistää joko ```index_u.py``` tai ```index_t.py``` tiedoston, riippuen siitä, käytetäänkö käyttöliittymää. Kummatkin index-tiedostot käynnistävät eri käyttöliittymän.
+
 ## Minimax-algoritmi
 
 Ratkaisualgoritmi on minimax-algoritmi alfa-beeta karsinnalla. Algoritmissa on kaksi osaa, maksimointi ja minimointi, jotka simuloivat pelin kahta eri osaa, laattojen siirtoa ja uusien laattojen luomista. Maksimointi hakee kaikki lailliset siirrot, ja luo uuden haun jokaisen siirron luomalle pelikentälle. Minimointi käy läpi kaikki mahdolliset sijainnit, joihin on mahdollista laittaa uusi laatta. Koska uusi laatta voi olla joko 2- tai 4-laatta, jokainen vapaa sijainti luo kaksi uutta pelikenttää, joille tehdään uusi haku.
