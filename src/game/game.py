@@ -83,7 +83,7 @@ class Game:
                 print(self.board)
             if self.stop_ww and self.board.won:
                 break
-            result = Minimax(self.board,stop_at_2048=self.stop_ww).start()
+            result = Minimax(self.board).start()
             move = result[0]
             value = result[1]
             if move is None:

@@ -249,7 +249,7 @@ class UI():
             return
 
     def solve(self):
-        result = Minimax(self.board, stop_at_2048=self.stop_at_2048.get()).start()
+        result = Minimax(self.board).start()
         move = result[0]
         #value = result[1]
         #print(value)

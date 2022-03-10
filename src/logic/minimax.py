@@ -7,14 +7,11 @@ class Minimax():
     Etsii parhaan siirron.
     board : Board
         Arvioitava pelikenttä
-    stop_at_2048 : Bool
-        Kentät, jotka sisältävät 2048-laatan, saavat paljon lisäpisteitä
     """
 
-    def __init__(self, board=None, stop_at_2048=True):
+    def __init__(self, board=None):
         self.board = board
         self.big_number = 10**9
-        self.sa2 = stop_at_2048
 
     def start(self, depth:int=3, use_dynamic:bool=True):
         """
