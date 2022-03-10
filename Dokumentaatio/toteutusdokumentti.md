@@ -59,7 +59,9 @@ Tasaisuus mittaa kuinka paljon jokaisen laatan arvon eroaa naapurilaattojen arvo
 
 #### Esimerkki
 
-Jos 2048-laatan vieressä on 1024-laatta, tai 4-laatan vieressä on 2-laatta, tasaisuus on -1, koska ```log2(2048) - log2(1024) = -1 = log2(4) - log2(2)```
+Jos 2048-laatan vieressä on 1024-laatta, tai 4-laatan vieressä on 2-laatta, tasaisuus on -1, koska 
+
+```log2(2048) - log2(1024) = -1 = log2(4) - log2(2)```
 
 A) Tasaisuus on 0 (kaikkien laattojen naapurit ovat samoja laattoja tai 0-laattoja)
 
