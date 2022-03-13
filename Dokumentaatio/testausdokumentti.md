@@ -11,7 +11,7 @@ Muut pelilaudan testit testaavat pelilaudan muita metodeja; osaako pelilauta sij
 Minimax-algoritmin testaus on kaksi yksinkertaista testiä, jotka testaavat löytääkö algoritmi pelilaudan parhaan siirron, jos paras siirto on selvä. Selvä siirto on joko siirto, jossa kaikki muut päättyvät huonoon pelilautaan, tai muilla siirroilla ei saada muodostettua 2048-laattaa.
 
 ### Heuristiikka
-Heuristiikka-algoritmia testataan katsomalla saako algoritmi jokaisen eri heuristiikan arvon laskettua oikein. Eri testit testaavat monotonisuutta, tasaisuutta, suurinta arvoa, vapaiden laattojen määrää ja suurimman laatan sijainta. Viimeinen testi testaa yksinkertaisen kentän kaikkia eri heuristisia arvoja.
+Heuristiikka-algoritmia testataan katsomalla saako algoritmi jokaisen eri heuristiikan arvon laskettua oikein. Eri testit testaavat monotonisuutta, tasaisuutta, suurinta arvoa, vapaiden laattojen määrää ja suurimman laatan sijainta. Viimeinen testi evaluoi yksinkertaisen kentän.
 
 ## Testikattavuus
 
