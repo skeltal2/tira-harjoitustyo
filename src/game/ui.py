@@ -6,6 +6,9 @@ from logic.board import Board
 from logic.minimax import Minimax
 
 class UI():
+    """
+    Luo tkinter ikkuna, jossa on oma pelilogiikka
+    """
 
     def __init__(self):
         self.root = tk.Tk()
@@ -14,15 +17,13 @@ class UI():
 
         self.frm = ttk.Frame(
             master=self.root,
-            padding=10,
-            #relief="solid"
+            padding=10
         )
         self.frm.grid(column=0,row=0)
 
         self.control_frm = ttk.Frame(
             master=self.root,
-            padding=10,
-            #relief="solid"
+            padding=10
         )
         self.control_frm.grid(column=1,row=0)
 
@@ -47,6 +48,7 @@ class UI():
         self.labels = []
         self.tiles = []
 
+        # Arvo: Tekstin väri, laatan väri
         self.color_map = {
             2:("#776e65", "#eee4da"),
             4:("#776e65", "#ede0c8"),
@@ -60,6 +62,7 @@ class UI():
             1024:("#f9f6f2", "#edc53f"),
             2048:("#f9f6f2", "#edc22e")
         }
+        # Muut laatat käyttävät #f9f6f2, #3c3a33
 
         self.move_map = {
             # WASD
@@ -83,6 +86,9 @@ class UI():
         self.setup_controls()
 
     def setup_controls(self):
+        """
+        Luo ohjaimet ja asettaa ne paikoilleen.
+        """
         start_button = tk.Button(
             master=self.control_frm,
             text="Ratkaise!",
@@ -144,6 +150,7 @@ class UI():
             offvalue=False
         )
 
+        # Sido metodit painikkeisiin
         start_button.bind('<ButtonRelease>', self.solve_button)
         new_game_button.bind('<ButtonRelease>', self.new_game_button)
         exit_button.bind('<ButtonRelease>', self.quit_button)
@@ -157,16 +164,27 @@ class UI():
         win_condition.grid(row=2, pady=2)
 
     def solve_button(self, event):
+        """
+        Vaihda pelisilmukka käyttäjän ja algoritmin välillä.
+        Jos peli on loppu, aloittaa uuden pelin ja käynnistää algoritmin.
+        """
         self.do_solve = not self.do_solve
         if self.game_over:
             self.new_game_button(None)
             self.do_solve = True
-        self.solve()
+        if self.do_solve:
+            self.solve()
 
     def quit_button(self, event):
+        """
+        Poistuu käyttöliittymästä.
+        """
         self.root.quit()
 
     def new_game_button(self, event):
+        """
+        Aloittaa uuden pelin ja nollaa kaikki arvot.
+        """
         if not self.do_solve or self.game_over:
             self.board.__init__()
             self.game_over = False
@@ -176,6 +194,9 @@ class UI():
             self.update_grid()
 
     def build_grid(self):
+        """
+        Rakentaa ruudukon.
+        """
         for board_y in range(4):
             for board_x in range(4):
                 text = tk.StringVar()
@@ -199,7 +220,10 @@ class UI():
         self.update_grid()
 
     def update_grid(self):
-        #väri testi [0,0,0,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192]
+        """
+        Asettaa laatat ruudukkoon.
+        Jos laatan arvo on 0, se jätetään tyhjäksi. Väri riippuu arvosta
+        """
         self.score_display.set(
             "Pisteet:\n"+
             str(self.board.get_score())+
@@ -212,23 +236,35 @@ class UI():
             tile = new_tiles[i]
             f_color = "#f9f6f2"
             if tile == 0:
+                # tyhjä laatta
                 self.tiles[i].set("")
                 b_color = "#cdc1b4"
             else:
                 self.tiles[i].set(tile)
                 if new_tiles[i] in self.color_map:
+                    # arvo <= 2048
                     f_color = self.color_map[tile][0]
                     b_color = self.color_map[tile][1]
                 else:
+                    # arvo > 2048
                     b_color = "#3c3a33"
             self.labels[i].config(foreground = f_color)
             self.labels[i].config(background = b_color)
 
     def keypress(self, event):
+        """
+        Käsittelee näppäinpainallukset. Toimii vain kun algoritmi ei ole päällä.
+        """
         if event.keysym in self.move_map and not self.do_solve:
             self.handle_game(event.keysym)
 
-    def handle_game(self, move_c):
+    def handle_game(self, move_c:str):
+        """
+        Pelisilmukka, kun käyttäjä pelaa peliä.
+
+        move_c : str
+            Painetun näppäimen keysym
+        """
         if self.game_over:
             return
         move = self.move_map[move_c]
@@ -249,10 +285,11 @@ class UI():
             return
 
     def solve(self):
+        """
+        Pelisilmukka, kun algoritmi pelaa peliä.
+        """
         result = Minimax(self.board).start()
         move = result[0]
-        #value = result[1]
-        #print(value)
 
         if max(self.board.get_list()) == 2048 and not self.game_over and self.stop_at_2048.get():
             self.game_over = True
@@ -272,6 +309,9 @@ class UI():
             self.root.after(self.turn_timer.get(), self.solve)
 
     def display(self):
+        """
+        Käynnistää ikkunan pääsilmukan.
+        """
         self.board.new_tile()
         self.board.new_tile()
         self.build_grid()

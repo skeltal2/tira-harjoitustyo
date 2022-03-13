@@ -117,7 +117,7 @@ class Heuristic():
         """
         free = len(self.board.get_empty())
         return log(free) if free > 0 else 0
-    
+
     def force_corner(self):
         """
         Onko suurin laatta kulmassa?
@@ -132,7 +132,7 @@ class Heuristic():
             if tile == max_tile:
                 if len([i for i in self.board.get_neighbors(i) if i != 0]) > 2:
                     force_score -= self.log_zero(tile)
-        
+
         return force_score
 
     @classmethod

@@ -1,5 +1,5 @@
-from game.game import Game
 import json
+from game.game import Game
 
 def run_test():
     runs = int(input("Kuinka monta peliä pelataan? Yksi peli kestää noin 30 - 60 sekuntia:\n"))
@@ -24,10 +24,10 @@ def run_test():
         sq_wins[i] = wins / (i+1)
         print(f"Peli {i} valmis")
 
-    with open("test_results.json", mode="w+") as file:
+    with open("test_results.json", mode="w+", encoding="utf8") as file:
         json.dump(games, file, ensure_ascii=False, indent=4)
 
-    with open("sq_wins.json", mode="w+") as file:
+    with open("sq_wins.json", mode="w+", encoding="utf8") as file:
         json.dump(sq_wins, file, ensure_ascii=False, indent=4)
     print("Valmis!")
 

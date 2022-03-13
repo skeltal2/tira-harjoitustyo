@@ -56,7 +56,7 @@ class Minimax():
         """
         moves = board.get_legal_moves()
 
-        # Jos on päästy puun pohjalle, tai ei voida liikkua pysäytä haku.
+        # Jos on päästy puun pohjalle, tai ei voida liikkua, pysäytä haku.
         if depth == 0 or moves is None:
             if moves is None:
                 return move, -self.big_number
@@ -103,7 +103,7 @@ class Minimax():
         return None, value
 
     @classmethod
-    def dynamic_depth(cls, board):
+    def dynamic_depth(cls, board:Board):
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
         
