@@ -1,5 +1,7 @@
 # 2048 Ratkaisija
 
+Ohjelma, joka yrittää ratkaista 2048-pelin.
+
 ## Dokumentaatio
 - [Määrittelydokumentti](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/maarittelydokumentti.md)
 - [Toteutusdokumentti](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/toteutusdokumentti.md)
