@@ -9,7 +9,7 @@ def test_search_merges():
         0,0,4,64
     ])
 
-    move = Minimax(board).start(3,False)[0]
+    move = Minimax(board).start(3,True)[0]
 
     assert move == 2
 
