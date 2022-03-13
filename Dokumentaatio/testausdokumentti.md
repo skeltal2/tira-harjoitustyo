@@ -34,6 +34,8 @@ Testauksessa kestää 15–60 sekuntia per peli, riippuen tietokoneen suoritusky
 
 ## Testauksen tulokset
 
+Molemmat testit tehty AMD Ryzen 5 5600X prosessorilla.
+
 ### Testi 1
 Data kerättiin suorittamalla 50 peliä. 2048-laatan saavuttaminen päätti pelin.
 
