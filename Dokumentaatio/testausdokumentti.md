@@ -8,7 +8,7 @@ Pelilauta sisältää 2048-pelin logiikan, joita muut moduulit voivat käyttää
 Muut pelilaudan testit testaavat pelilaudan muita metodeja, osaako pelilauta sijoittaa uuden laatan, löytääkö se tietyn laatan naapurit, tunnistaako se, jos peli on voitettu, löytääkö se tyhjien laattojen sijainnit, löytääkö se lailliset siirrot (ja toimiiko se oikein, jos laillisia siirtoja ei ole) ja onko pelilaudan merkkijono esitys oikein.
 
 ### Minimax
-Minimax-algoritmin testaus on kaksi yksinkertaista testiä, jotka testaavat löytääkö algoritmi pelilaudan parhaan siirron, jos paras siirto on selvä. Selvä siirto on joko siirrot, jossa kaikki muut päättyvät huonoon pelilautaan, tai muilla siirroilla ei saada muodostettua 2048-laattaa.
+Minimax-algoritmin testaus on kaksi yksinkertaista testiä, jotka testaavat löytääkö algoritmi pelilaudan parhaan siirron, jos paras siirto on selvä. Selvä siirto on joko siirrto, jossa kaikki muut päättyvät huonoon pelilautaan, tai muilla siirroilla ei saada muodostettua 2048-laattaa.
 
 ### Heuristiikka
 Heuristiikka-algoritmia testataan katsomalla saako algoritmi jokaisen eri heuristiikan arvon laskettua oikein. Neljä eri testiä testaavat algoritmin neljää eri osaa, monotonisuutta, tasaisuutta, suurinta laattaa, ja vapaiden laattojen määrää. Jokainen arvo lasketaan erikseen. Viimeinen testi laskee yksinkertaisen pelilaudan koko heuristisen arvon.
