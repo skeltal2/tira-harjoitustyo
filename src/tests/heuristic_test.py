@@ -54,7 +54,7 @@ def test_not_corner():
         128,0,0,1024
     ])
 
-    assert Heuristic(board).force_corner() == -log(2048, 2)
+    assert Heuristic(board).force_corner() == -11
 
 def test_double_corner():
     board = Board(board_state=[
