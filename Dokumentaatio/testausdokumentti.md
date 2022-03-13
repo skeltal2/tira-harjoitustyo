@@ -5,7 +5,7 @@ Ohjelmassa on kaksi eri osaa, peli ja logiikka. Peli sisältää käyttöliittym
 ### Pelilauta
 Pelilauta sisältää 2048-pelin logiikan, joita muut moduulit voivat käyttää kutsumalla ```board``` olion eri metodeja. Näistä tärkein on ```move``` metodi, joka on vastuussa pelilaudan laattojen liikuttamisesta. Pelilaudan testaaminen sisältää monta eri testiä, jotka varmistavat, että laatat siirtyvät oikein. Laattojen pitää yhdistyä toiseen samaan laattaan, jos ne törmäävät toisiinsa, mutta laatta voi yhdistyä vain kerran yhdellä siirrolla. Näitä testaa kaksi eri testiä (pystysuuntaan ja vaakasuuntaan liikkuminen), joissa kummassakin on pelilauta, jossa on kaikki eri mahdolliset siirtotyypit.
 
-Muut pelilaudan testit testaavat pelilaudan muita metodeja, osaako pelilauta sijoittaa uuden laatan, löytääkö se tietyn laatan naapurit, tunnistaako se, jos peli on voitettu, löytääkö se tyhjien laattojen sijainnit, löytääkö se lailliset siirrot (ja toimiiko se oikein, jos laillisia siirtoja ei ole) ja onko pelilaudan merkkijono esitys oikein.
+Muut pelilaudan testit testaavat pelilaudan muita metodeja; osaako pelilauta sijoittaa uuden laatan, löytääkö se tietyn laatan naapurit, tunnistaako se, jos peli on voitettu, löytääkö se tyhjien laattojen sijainnit, löytääkö se lailliset siirrot (ja toimiiko se oikein, jos laillisia siirtoja ei ole) ja onko pelilaudan merkkijono esitys oikein.
 
 ### Minimax
 Minimax-algoritmin testaus on kaksi yksinkertaista testiä, jotka testaavat löytääkö algoritmi pelilaudan parhaan siirron, jos paras siirto on selvä. Selvä siirto on joko siirrto, jossa kaikki muut päättyvät huonoon pelilautaan, tai muilla siirroilla ei saada muodostettua 2048-laattaa.
