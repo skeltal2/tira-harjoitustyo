@@ -2,7 +2,7 @@
 
 ## Rakenne
 
-Ohjelma koostuu kahdesta eri moduulista, ```logic``` ja ```game```. ```logic``` hallitsee pelin logiikan, eli pelikentän, laatat, ja tilastot, ja kummatkin algoritmit. ```game``` sisältää graafisen ja ASCII käyttöliittymän. Kumpikin hallitsee algoritmien kutsumisen ja pelaajan syötteen tulkitsemisen eri tavalla.
+Ohjelma koostuu kahdesta eri moduulista, ```logic``` ja ```game```. ```logic``` hallitsee pelin logiikan, eli pelikentän ja kummatkin algoritmit. ```game``` sisältää graafisen ja ASCII käyttöliittymän. Kumpikin eri käyttöliittymä hallitsee algoritmien kutsumisen ja pelaajan syötteen tulkitsemisen eri tavalla.
 
 #### Tiedostorakenne
 - src
@@ -20,6 +20,12 @@ Ohjelma koostuu kahdesta eri moduulista, ```logic``` ja ```game```. ```logic``` 
 - tasks.py
 
 ```tasks.py``` sisältää komennot. Kun ohjelma käynnistetään ```start``` komennolla, se käynnistää joko ```index_u.py``` tai ```index_t.py``` tiedoston, riippuen siitä, käytetäänkö käyttöliittymää. Kummatkin index-tiedostot käynnistävät eri käyttöliittymän.
+
+## Pelikenttä
+
+Pelikenttä ja laatat ovat toeutettu yhtenä luokkana. Pelikenttä on 4 x 4 ruudukko, jossa jokaisella ruudulla on oma indeksi. Laattojen arvot ovat tallennettu 16-alkioiseen listaan, jossa jokainen alkio vastaa tiettyä pelikentän ruutua. Jos laatan arvo on 0, ruutu on vapaa. Jokainen pelikenttä pitää myös kirjaa pisteista, siirroista ja siitä onko peli voitettu. Pelikenttä osaa myös laskea nämä arvot tarpeen mukaan.
+
+Pelikenttä sisältää kolmea eri tyyppistä metodia. Kaikki ```get_```-alkuiset metodit palauttavat jokun pelikentän tiedon. Esimerkiksi ```get_neighbors()``` palauttaa tietyn laatan naapurlaattojen arvot, ja ```get_legal_moves()``` palauttaa kaikki lailliset siirrot. Laattojen manipulointtin on kolme eri metodia, ```insert_tile()``` ja ```new_tile()``` luovat uusia laattoja, ja ```move()``` liikuttaa kaikki laattoja johonkin suuntaan. Viimeiseksi on metodi ```clone()```, joka palauttaa uuden pelikenttä-olion, joka on kopio tästä pelikenttä-oliosta.
 
 ## Minimax-algoritmi
 
