@@ -28,7 +28,7 @@ Suorituskykyä mitataan ```performance.py``` moduulilla. Moduuli suorittaa käyt
 - Kuinka monta siirtoa jokaisen arvon saavuttamiseen meni
 - Mikä oli suurin saavutettu arvo
 
-Algoritmin tarkkuutta, eli sen kykyä saavuttaa 2048-laatta, mitatessa pitää suorittaa noin 30 peliä. Seuraavissa testeissa huomaa, että esimerkiksi 10 pelillä, tarkkuus voi vaihdella jopa 30 prosenttiyksilöllä (testi 1: 60 %, testi 2: 90 %), eli suuri määrä pelejä on pelattava, jotta tarkkuus lasketaan tarkasti. Tarkkuus jokaisen pelin jälkeen kirjoitetaan ```sq_wins.json``` tiedostoon.
+Algoritmin tarkkuutta, eli sen kykyä saavuttaa 2048-laatta, mitatessa pitää suorittaa noin 30 peliä. Seuraavissa testeissä huomaa, että esimerkiksi 10 pelillä, tarkkuus voi vaihdella jopa 30 prosenttiyksilöllä (testi 1: 60 %, testi 2: 90 %), eli suuri määrä pelejä on pelattava, jotta tarkkuus lasketaan tarkasti. Tarkkuus jokaisen pelin jälkeen kirjoitetaan ```sq_wins.json``` tiedostoon.
 
 Testauksessa kestää 15–60 sekuntia per peli, riippuen tietokoneen suorituskyvystä, ja siitä milloin jokainen peli lopetetaan. Lisää ohjeita on [käyttöohjeessa](https://github.com/skeltal2/tira-harjoitustyo/blob/main/Dokumentaatio/kayttoohje.md#suorituskyky).
 
