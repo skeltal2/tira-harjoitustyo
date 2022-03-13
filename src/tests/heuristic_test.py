@@ -36,6 +36,36 @@ def test_free_tiles():
     
     assert Heuristic(board).free_tiles() == log(10)
 
+def test_corner():
+    board = Board(board_state=[
+        256,0,0,512,
+        0,0,0,0,
+        0,0,0,0,
+        2048,0,0,1024
+    ])
+
+    assert Heuristic(board).force_corner() == 0
+
+def test_not_corner():
+    board = Board(board_state=[
+        256,0,0,512,
+        2,0,0,0,
+        2048,2,0,0,
+        128,0,0,1024
+    ])
+
+    assert Heuristic(board).force_corner() == -log(2048, 2)
+
+def test_double_corner():
+    board = Board(board_state=[
+        128,0,0,512,
+        0,0,0,0,
+        2048,2,0,0,
+        2048,0,0,1024
+    ])
+
+    assert Heuristic(board).force_corner() == 0
+
 def test_eval():
     board = Board(board_state=[
         8,8,8,8,

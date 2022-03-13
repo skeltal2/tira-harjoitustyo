@@ -130,7 +130,7 @@ class Heuristic():
             return 0
         for i, tile in enumerate(lst):
             if tile == max_tile:
-                if len([i for i in self.board.get_neighbors(i) if i != 0]) > 2:
+                if len([n for n in self.board.get_neighbors(i) if n != 0]) > 2:
                     force_score -= self.log_zero(tile)
 
         return force_score
