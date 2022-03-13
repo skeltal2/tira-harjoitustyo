@@ -29,7 +29,7 @@ Pelikenttä sisältää kolmea erityyppistä metodia. Kaikki ```get_```-alkuiset
 
 ## Minimax-algoritmi
 
-Ratkaisualgoritmi on minimax-algoritmi alfa-beeta karsinnalla. Algoritmissa on kaksi osaa, maksimointi ja minimointi, jotka simuloivat pelin kahta eri osaa, laattojen siirtoa ja uusien laattojen luomista. Maksimointi hakee kaikki lailliset siirrot, ja luo uuden haun jokaisen siirron luomalle pelikentälle. Minimointi käy läpi kaikki mahdolliset sijainnit, joihin on mahdollista laittaa uusi laatta. Koska uusi laatta voi olla joko 2- tai 4-laatta, jokainen vapaa sijainti luo kaksi uutta pelikenttää, joille tehdään uusi haku.
+Ratkaisualgoritmi on minimax-algoritmi alfa-beeta-karsinnalla. Algoritmissa on kaksi osaa, maksimointi ja minimointi, jotka simuloivat pelin kahta eri osaa, laattojen siirtoa ja uusien laattojen luomista. Maksimointi hakee kaikki lailliset siirrot, ja luo uuden haun jokaisen siirron luomalle pelikentälle. Minimointi käy läpi kaikki mahdolliset sijainnit, joihin on mahdollista laittaa uusi laatta. Koska uusi laatta voi olla joko 2- tai 4-laatta, jokainen vapaa sijainti luo kaksi uutta pelikenttää, joille tehdään uusi haku.
 
 Kun algoritmi pääsee haun loppuun, se kutsuu arviointialgoritmia, joka arvioi kentän heuristisen arvon. Tämä saatu arvo palautetaan hakua kutsuneelle haulle. Koska vain maksimointi vähentää syvyysarvoa, eli haku voi loppua vain maksimoinnin vuoroon, maksimoija valitsee laillisista siirroista sen, joka sai parhaan arvon, eli parhaan mahdollisen siirron.
 
@@ -77,7 +77,7 @@ B) Tasaisuus on -8 (Naapureita on yhteensä 8, jokaisen laatan naapuri on kaksi 
 
 ![image](https://user-images.githubusercontent.com/77693693/157104947-75fbef68-f373-4d3d-8a79-e3f6eda50b81.png)
 
-### Tyhjät laatat, ja suurimman laatan arvo ja sijanti
+### Tyhjät laatat, ja suurimman laatan arvo ja sijainti
 
 Tyhjät laatat ja suurimman laatan arvo ovat yksinkertaisia arvoja, kummankin arvo on vain nimensä mukaisen arvon logaritmi. Tyhjät laatat lasketaan luonnollisella logaritmilla, ja suurin laatta kahden logaritmilla. Tämä on siksi, että suurin laatta on aina jokin kahden potenssi, mutta tyhjiä laattoja voi olla vain alle 15.
 
@@ -101,6 +101,6 @@ B) Oikeasta yläkulmasta voidaan helposti muodostaa 2048-laatta kolmella siirrol
 
 https://stackoverflow.com/questions/22342854/what-is-the-optimal-algorithm-for-the-game-2048/22389702#22389702 - Algoritmin idea ja monotonisuuden laskeminen
 
-https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning - Apua alfa-beeta karsinnan toteutukseen
+https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning - Apua alfa-beeta-karsinnan toteutukseen
 
 https://play2048.co/ - Alkuperäinen peli (säännöt ja värit)
