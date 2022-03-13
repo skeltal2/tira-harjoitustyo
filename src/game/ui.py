@@ -310,7 +310,7 @@ class UI():
 
     def display(self):
         """
-        Käynnistää ikkunan pääsilmukan.
+        Käynnistää ikkunan pääsilmukan ja asettaa ensimmäisen pelin laatat.
         """
         self.board.new_tile()
         self.board.new_tile()

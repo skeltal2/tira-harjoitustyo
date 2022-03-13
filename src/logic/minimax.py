@@ -30,9 +30,11 @@ class Minimax():
         move = result[0]
         value = result[1]
 
+        # Jos mitään siirtoa ei löydetty, palauta satunnainen laillinen siirto.
         if move is None:
             moves = self.board.get_legal_moves()
             if moves is None:
+                # Jos laillisia siirtoja ei ole, palauta None
                 return None, value
             return choice(moves), value
         return move, value
@@ -106,7 +108,7 @@ class Minimax():
     def dynamic_depth(cls, board:Board):
         """
         Palauttaa syvyysarvon, joka riippuu tyhjien laattojen määrästä (int)
-        
+
         board : Board
             Arvioitava pelikenttä
         """
